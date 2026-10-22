@@ -2,6 +2,8 @@
 #!desc=配合常用的小象超市去广告插件使用，只补它们没处理的接口（23 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/58/f3/31/58f331f7-80fb-db5d-a742-096caec94228/AppIcon-0-0-1x_U007emarketing-0-3-0-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id1444411068
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

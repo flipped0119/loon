@@ -2,6 +2,8 @@
 #!desc=配合常用的喜马拉雅去广告插件使用，只补它们没处理的接口（27 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bf/e1/68/bfe1687f-0b36-efcf-6427-d4e174d13c84/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id876336838
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

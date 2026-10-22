@@ -2,6 +2,8 @@
 #!desc=配合常用的Keep去广告插件使用，只补它们没处理的接口（16 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/80/79/ef/8079ef71-1064-54f2-ddd0-b26dfe62498e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id952694580
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

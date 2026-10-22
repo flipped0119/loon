@@ -2,6 +2,8 @@
 #!desc=配合常用的墨迹天气去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bb/08/26/bb082641-37e3-9346-4e66-28b6a2b0375b/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id434209233
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

@@ -2,6 +2,8 @@
 #!desc=配合常用的酷我音乐去广告插件使用，只补它们没处理的接口（25 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fd/e6/e5/fde6e5b6-8ccd-9c86-e166-2da72d37ef3b/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220-0.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id588673713
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

@@ -2,6 +2,8 @@
 #!desc=配合常用的小红书去广告插件使用，只补它们没处理的接口（16 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4f/54/88/4f54884e-c820-aa94-5797-c6b69c27ed3a/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id741292507
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

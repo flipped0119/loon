@@ -2,6 +2,8 @@
 #!desc=配合常用的顺丰速运去广告插件使用，只补它们没处理的接口（13 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c4/43/e4/c443e452-f7d4-de38-f5c3-2bb85eb6ed74/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id899529698
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

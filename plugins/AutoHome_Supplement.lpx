@@ -2,6 +2,8 @@
 #!desc=配合常用的汽车之家去广告插件使用，只补它们没处理的接口（8 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/26/40/0f/26400fa7-315a-e8cf-4670-4717eb7fbbbb/AppIcon-0-0-1x_U007epad-0-1-85-220.png/120x120bb.png
+#!openUrl=https://apps.apple.com/app/id385919493
 #!tag=去广告
 #!loon_version=3.5.1(998)
 

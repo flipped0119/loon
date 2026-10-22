@@ -2,6 +2,7 @@
 #!desc=配合各 App去广告插件使用，只补它们没处理的接口（196 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
 #!tag=去广告
 #!loon_version=3.5.1(998)
 
