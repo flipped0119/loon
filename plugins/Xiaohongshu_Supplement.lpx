@@ -5,6 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4f/54/88/4f54884e-c820-aa94-5797-c6b69c27ed3a/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id741292507
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -28,4 +29,4 @@ response if ${url} ~= /^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d+\/user
 response if ${url} ~= /^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d+\/recommend\/user\/follow_recommend\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js") with tag="小红书去广告补充", requires_body=true
 
 [MitM]
-hostname=*.xiaohongshu.com, edith.xiaohongshu.com
+hostname=edith.xiaohongshu.com

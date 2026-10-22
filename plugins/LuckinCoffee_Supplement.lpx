@@ -5,17 +5,16 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/23/de/db/23dedb45-aa83-7cc8-c0cf-e47000cba016/AppIcon-0-0-1x_U007emarketing-0-6-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1296749505
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
+^https?:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page response-body-replace-regex \{.+\} {"status":"SUCCESS"}
+^https?:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main response-body-replace-regex "popTitle":".+?" "popTitle":""
 request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/aigc\/showAIButton/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/base\/getSubscribeTemplate/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/order\/orderBanner/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/market\/receiveCoupon\/receiveCouponPop/ then reject_dict(200)
-
-[Script]
-http-response ^https:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/CommonScript/replace-body.js, requires-body=true, timeout=60 ,tag=瑞幸咖啡去广告补充, argument="\{.+\}->{"status":"SUCCESS"}"
-http-response ^https:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/CommonScript/replace-body.js, requires-body=true, timeout=60 ,tag=瑞幸咖啡去广告补充, argument=""popTitle":".+?"->"popTitle":"""
 
 [MitM]
 hostname=m.lkcoffee.com, capi.lkcoffee.com

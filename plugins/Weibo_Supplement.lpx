@@ -5,6 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0d/cb/53/0dcb5343-74eb-a65a-bb19-304fe55da537/WeiboAppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id350962117
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -34,4 +35,4 @@ response if ${url} ~= /^https?:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?/ the
 request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/Plugins/VVebo_Repair.js") with tag="微博去广告补充"
 
 [MitM]
-hostname=api.weibo.cn, weibointl.api.weibo.cn, *.weibo.cn, tqt.weibo.cn
+hostname=api.weibo.cn, weibointl.api.weibo.cn, tqt.weibo.cn

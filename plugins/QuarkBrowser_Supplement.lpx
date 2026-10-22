@@ -5,6 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5e/d4/d0/5ed4d09d-4b9c-0b7c-b080-585534ca9962/AppIcon-0-0-1x_U007ephone-0-1-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1160172628
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -16,4 +17,4 @@
 ^https?:\/\/.+\.shuqireader\.com\/sapi\/.+ reject
 
 [MitM]
-hostname=ocean.shuqireader.com, *.shuqireader.com, message.shuqireader.com
+hostname=ocean.shuqireader.com, message.shuqireader.com

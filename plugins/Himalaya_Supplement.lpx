@@ -1,10 +1,11 @@
 #!name=喜马拉雅去广告补充
-#!desc=配合常用的喜马拉雅去广告插件使用，只补它们没处理的接口（27 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的喜马拉雅去广告插件使用，只补它们没处理的接口（26 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bf/e1/68/bfe1687f-0b36-efcf-6427-d4e174d13c84/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id876336838
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -35,8 +36,7 @@ request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)?/ t
 response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d\/category/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
 http-response ^https?:\/\/.+((ximalaya)|(xmcdn)).+(mobile-user\/v2|mobile-web|queryCategoryPageData|discovery-feed\/v4|vip\/v1\/recommand|product\/detail\/v1|mobile\/v1\/album|playpage|album\/price\/ts|mobile\/user\/member).*$ script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/xmly.js, requires-body=true, timeout=60 ,tag=喜马拉雅去广告补充
-request if ${url} ~= /^https?:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\// then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/xmly.js") with tag="喜马拉雅去广告补充"
 response if ${url} ~= /^https?:\/\/mobile\.ximalaya\.com\/focus-mobile|(discovery-category|mobile-user)\/v\d\/(mix|category|homePage)/ then script("https://raw.githubusercontent.com/githubdulong/Script/master/xmly_json.js") with tag="喜马拉雅去广告补充", requires_body=true
 
 [MitM]
-hostname=*.ximalaya.com, passport.ximalaya.com, adse.ximalaya.com, xmc.ximalaya.com, mobile.ximalaya.com
+hostname=passport.ximalaya.com, adse.ximalaya.com, mobile.ximalaya.com

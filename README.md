@@ -11,7 +11,7 @@
 | 高德地图去广告补充 | 26 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Amap_Supplement.lpx` |
 | 汽车之家去广告补充 | 5 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/AutoHome_Supplement.lpx` |
 | 百度网盘去广告补充 | 10 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/BaiduNetDisk_Supplement.lpx` |
-| 哔哩哔哩去广告补充 | 15 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Bilibili_Supplement.lpx` |
+| 哔哩哔哩去广告补充 | 13 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Bilibili_Supplement.lpx` |
 | 菜鸟去广告补充 | 7 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Cainiao_Supplement.lpx` |
 | 彩云天气去广告补充 | 8 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/ColorfulClouds_Supplement.lpx` |
 | 滴滴去广告补充 | 22 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/DiDi_Supplement.lpx` |
@@ -19,8 +19,8 @@
 | 番茄小说去广告补充 | 0 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/DragonRead_Supplement.lpx` |
 | 闲鱼去广告补充 | 8 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/FleaMarket_Supplement.lpx` |
 | 虎扑去广告补充 | 4 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/HUPU_Supplement.lpx` |
-| 华住会去广告补充 | 3 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/HantingHotels_Supplement.lpx` |
-| 喜马拉雅去广告补充 | 20 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Himalaya_Supplement.lpx` |
+| 华住会去广告补充 | 2 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/HantingHotels_Supplement.lpx` |
+| 喜马拉雅去广告补充 | 19 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Himalaya_Supplement.lpx` |
 | Keep去广告补充 | 13 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Keep_Supplement.lpx` |
 | 酷我音乐去广告补充 | 15 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Kuwo_Supplement.lpx` |
 | 瑞幸咖啡去广告补充 | 4 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/LuckinCoffee_Supplement.lpx` |
@@ -28,7 +28,7 @@
 | 芒果TV去广告补充 | 0 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/MangoTV_Supplement.lpx` |
 | 墨迹天气去广告补充 | 5 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/MojiWeather_Supplement.lpx` |
 | 网易云音乐去广告补充 | 32 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/NeteaseCloudMusic_Supplement.lpx` |
-| 其他 App去广告补充 | 102 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Others_Supplement.lpx` |
+| 其他 App去广告补充 | 99 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Others_Supplement.lpx` |
 | 拼多多去广告补充 | 6 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/PinDuoDuo_Supplement.lpx` |
 | 朴朴超市去广告补充 | 1 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/PuPuMall_Supplement.lpx` |
 | 起点读书去广告补充 | 1 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/QiDian_Supplement.lpx` |
@@ -45,7 +45,7 @@
 | 网易有道词典去广告补充 | 1 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/YoudaoDict_Supplement.lpx` |
 | 知乎去广告补充 | 36 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/Zhihu_Supplement.lpx` |
 | 小象超市去广告补充 | 17 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/iMaiCai_Supplement.lpx` |
-| 爱奇艺去广告补充 | 2 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/iQiYiVideo_Supplement.lpx` |
+| 爱奇艺去广告补充 | 1 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/iQiYiVideo_Supplement.lpx` |
 | 什么值得买去广告补充 | 6 | `https://raw.githubusercontent.com/flipped0119/loon/main/plugins/smzdm_Supplement.lpx` |
 <!-- plugins:end -->
 

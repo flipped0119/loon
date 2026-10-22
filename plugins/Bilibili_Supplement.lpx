@@ -1,10 +1,11 @@
 #!name=哔哩哔哩去广告补充
-#!desc=配合常用的哔哩哔哩去广告插件使用，只补它们没处理的接口（33 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的哔哩哔哩去广告插件使用，只补它们没处理的接口（31 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d3/25/b7/d325b78e-392f-402d-5927-94327f0c4499/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id736536022
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -43,8 +44,6 @@ http-response ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comment\/Main
 response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetCommonBanner/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/(?>app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.dynamic\.v\d\.Dynamic\/DynAll/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliProtoA.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/app\.bilibili\.com\/x\/resource\/(?>top\/activity|show\/tab\/v\d)\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliJson.js") with tag="哔哩哔哩去广告补充", requires_body=true
-request if ${url} ~= /^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/bilibili.js") with tag="哔哩哔哩去广告补充"
-request if ${url} ~= /^https?:\/\/m.bilibili.com\/$/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/bilibili.js") with tag="哔哩哔哩去广告补充"
 
 [MitM]
-hostname=manga.bilibili.com, www.bilibili.com, api.bilibili.com, api.vc.bilibili.com, app.bilibili.com, live.bilibili.com, grpc.biliapi.net, m.bilibili.com, cm.bilibili.com, dataflow.biliapi.com
+hostname=manga.bilibili.com, www.bilibili.com, api.bilibili.com, api.vc.bilibili.com, app.bilibili.com, live.bilibili.com, grpc.biliapi.net, cm.bilibili.com, dataflow.biliapi.com

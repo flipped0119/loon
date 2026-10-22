@@ -1,10 +1,11 @@
 #!name=爱奇艺去广告补充
-#!desc=配合常用的爱奇艺去广告插件使用，只补它们没处理的接口（15 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的爱奇艺去广告插件使用，只补它们没处理的接口（14 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f7/c7/1d/f7c71d64-4810-e2d1-76a2-f49677fc085c/App_Icon-marketing.lsr/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1190755526
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -24,7 +25,6 @@ http-response ^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy
 http-response ^https?:\/\/cards\.iqiyi\.com\/views_category\/3\.0\/(category_home|categorylib_content|film_hybrid)\? script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=爱奇艺去广告补充, enable=true
 http-response ^https?:\/\/cards\.iqiyi\.com\/views_search\/3\.0\/(hot_query_)?search\? script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=爱奇艺去广告补充, enable=true
 http-response ^https?:\/\/iface2\.iqiyi\.com\/views\/3\.0\/(bottom_theme|home_top_menu)\? script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=爱奇艺去广告补充, enable=true
-request if ${url} ~= /^https?:\/\/passport\.iqiyi\.com\/apis\/user\// then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/iqiyi.js") with tag="爱奇艺去广告补充"
 
 [MitM]
-hostname=*cupid.iqiyi.com, iface.iqiyi.com, intl.iqiyi.com, act.vip.iqiyi.com, iface2.iqiyi.com, ssports.iqiyi.com, static.iqiyi.com, *.iqiyi.com, passport.iqiyi.com
+hostname=*cupid.iqiyi.com, iface.iqiyi.com, intl.iqiyi.com, act.vip.iqiyi.com, iface2.iqiyi.com, ssports.iqiyi.com, static.iqiyi.com

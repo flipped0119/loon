@@ -1,10 +1,11 @@
 #!name=滴滴去广告补充
-#!desc=配合常用的滴滴去广告插件使用，只补它们没处理的接口（31 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的滴滴去广告插件使用，只补它们没处理的接口（32 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7d/23/3f/7d233f53-d18c-2a26-928e-51d474f0bd82/AppIcon_default-0-0-1x_U007emarketing-0-6-0-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id554499054
 #!tag=去广告
+#!date=2026-10-22 16:38:18
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -32,15 +33,16 @@ request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/energy\/hummer\/api\/r
 request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/am\/marketing\/api\/member\/facade\/charge\/personal\/center/ then reject_dict(200)
 
 [Script]
-http-response ^https:\/\/common\.diditaxi\.com\.cn\/common\/v5 script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/scripts/didi.js, requires-body=true, timeout=60 ,tag=滴滴去广告补充
 http-response ^https?:\/\/freight\.xiaojukeji\.com\/gateway script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
 http-response ^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/xpget script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
 http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
+http-response ^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
 http-response ^https?:\/\/daijia\.kuaidadi\.com\/gateway script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
 http-response ^https?:\/\/daijia\.kuaidadi\.com:443\/gateway script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
+http-response ^https?:\/\/common\.diditaxi\.com\.cn\/common\/v5 script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴去广告补充, enable=true
 response if ${url} ~= /^https?:\/\/conf\.diditaxi\.com\.cn\/ota\/na\/yuantu\/infoList/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v\d\/other\/pGetSceneList/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js") with tag="滴滴去广告补充", requires_body=true
 
 [MitM]
-hostname=res.xiaojukeji.com, omgup*.xiaojukeji.com, ct.xiaojukeji.com, common.diditaxi.com.cn, freight.xiaojukeji.com, conf.diditaxi.com.cn, daijia.kuaidadi.com, as.xiaojukeji.com, ut.xiaojukeji.com, api.udache.com, htwkop.xiaojukeji.com, mapi.xiaojukeji.com, manhattan.webapp.xiaojukeji.com, ddpay.xiaojukeji.com, energy.xiaojukeji.com
+hostname=res.xiaojukeji.com, omgup*.xiaojukeji.com, ct.xiaojukeji.com, freight.xiaojukeji.com, conf.diditaxi.com.cn, common.diditaxi.com.cn, daijia.kuaidadi.com, as.xiaojukeji.com, ut.xiaojukeji.com, api.udache.com, htwkop.xiaojukeji.com, mapi.xiaojukeji.com, manhattan.webapp.xiaojukeji.com, ddpay.xiaojukeji.com, energy.xiaojukeji.com
