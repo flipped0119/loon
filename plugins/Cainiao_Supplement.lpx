@@ -1,0 +1,20 @@
+#!name=菜鸟去广告补充
+#!desc=配合常用的菜鸟去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow\.cn/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.app\.home\.v\d+\.bottom\.area/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.alimama\.abyss\.unionpage\.get/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.consultmerge/ then reject(200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/cainiao_json.js") with tag="菜鸟补充", requires_body=true
+response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/cainiao_json.js") with tag="菜鸟补充", requires_body=true
+
+[MitM]
+hostname=*.cainiao.com, guide-acs.m.taobao.com, acs4miniapp-inner.m.taobao.com

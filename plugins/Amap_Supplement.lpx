@@ -1,0 +1,25 @@
+#!name=高德地图去广告补充
+#!desc=配合常用的高德地图去广告插件使用，只补它们没处理的接口（12 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/aos\/alimama\/splash_screen/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/v\d\/ai_rec\// then reject_dict(200)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/card-service-route-plan\?/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/valueadded\/weather/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^http:\/\/amdc\.m\.taobao\.com/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amdc.js") with tag="高德地图补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/message\/notice\/list/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js") with tag="高德地图补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/nearbyrec_smart/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js") with tag="高德地图补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js") with tag="高德地图补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js") with tag="高德地图补充", requires_body=true
+
+[MitM]
+hostname=m5.amap.com, m5-zb.amap.com, center.amap.com, amap-aos-info-nogw.amap.com, ai.amap.com

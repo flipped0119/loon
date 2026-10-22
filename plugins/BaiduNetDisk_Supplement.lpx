@@ -1,0 +1,23 @@
+#!name=百度网盘去广告补充
+#!desc=配合常用的百度网盘去广告插件使用，只补它没处理的接口（10 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/.*baidu\.com\/rest\/.*\/membership\/(proxy\/)?guide/ then reject(200)
+request if ${url} ~= /^https?:\/\/pan\.baidu\.com\/act\/v\d\/(bchannel|welfare)\/list/ then reject(200)
+request if ${url} ~= /^https?:\/\/pan\.baidu\.com\/rest\/.*\/pcs\/ad/ then reject(200)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/feed\/hotlist/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*zhangyuyidong\.cn\/api\/zysdk/ then reject(200)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/queryintent\/queryhint/ then reject(200)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/coins\/center\/notice/ then reject(200)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/recommend\/shortseries\/list/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https:\/\/pan\.baidu\.com\/rest\/.*\/membership\/user\?method=gamecenter/ then script("https://ddgksf2013.top/scripts/bdpan.ads.js") with tag="百度网盘补充", requires_body=true
+response if ${url} ~= /^https:\/\/pan\.baidu\.com\/feed\/cardinfos/ then script("https://ddgksf2013.top/scripts/bdpan.ads.js") with tag="百度网盘补充", requires_body=true
+
+[MitM]
+hostname=pan.baidu.com, afd.baidu.com

@@ -1,0 +1,34 @@
+#!name=喜马拉雅去广告补充
+#!desc=配合常用的喜马拉雅去广告插件使用，只补它们没处理的接口（21 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\// then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xmcdn\.com\/\w{8}\/\w{4}-\w{16}\/.+gif$/ then reject(404)
+request if ${url} ~= /^https?:\/\/gslb.*\.xima.*\.com\// then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query)/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/minorProtection\/pop/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/collector\/xl\/v\d/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck/ then reject(404)
+request if ${url} ~= /^https?:\/\/(adse\.wsa|adse|adbehavior|xdcs-collector)\.xima.*\.com\/.*/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub\/)?hotWord/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub\/)?hotWordBillboard/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub)?guideWord/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)?/ then reject(404)
+
+[Script]
+response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d\/category/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅补充", requires_body=true
+
+[MitM]
+hostname=*.xima*.*, *.xmcdn.*

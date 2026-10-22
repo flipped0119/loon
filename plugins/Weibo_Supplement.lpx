@@ -2,7 +2,6 @@
 #!desc=配合常用的「微博去广告」插件使用：只补它没处理的接口（视频流广告与频道、首页红点与消息数、实验开关、直播头像栏、游客模式），并提供设置页（Safari 打开 https://api.weibo.cn/__qx_weibo_settings__/）。Loon 同一请求只执行第一条命中的脚本，所以不重复处理去广告插件已覆盖的接口。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Weibo.png
 #!openUrl=https://apps.apple.com/app/id350962117
 #!tag=去广告
 #!loon_version=3.5.1(998)

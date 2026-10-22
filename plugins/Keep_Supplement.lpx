@@ -1,0 +1,21 @@
+#!name=Keep去广告补充
+#!desc=配合常用的Keep去广告插件使用，只补它们没处理的接口（8 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/running\/v\d\/home\/dialog/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/kprime\/v\d\/popups\/primeGuide/ then reject(200)
+request if ${url} ~= /^https?:\/\/api.gotokeep.com\/cauchy\/growth\/init/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/ads\/v\d\/ads\/preload/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/training\/box\/config/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/anno\/v\d\/upgrade\/check/ then reject(200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep补充", requires_body=true
+
+[MitM]
+hostname=api.gotokeep.com
