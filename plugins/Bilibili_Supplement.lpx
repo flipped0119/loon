@@ -1,5 +1,5 @@
 #!name=哔哩哔哩去广告补充
-#!desc=配合常用的哔哩哔哩去广告插件使用，只补它们没处理的接口（31 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的哔哩哔哩去广告插件使用，只补它们没处理的接口（33 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id736536022
 #!author=flipped0119
 #!tag=去广告
@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d3/25/b7/d325b78e-392f-402d-5927-94327f0c4499/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:27:02
 
 [Rewrite]
 request if ${url} ~= /^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v1\.Comic\/(Flash|ListFlash|GetActivityTab|GetBubbles)\?/i then reject_dict(200)
@@ -33,9 +33,10 @@ request if ${url} ~= /^https:\/\/cm\.bilibili\.com\/cm\/api\/(conversion|fees)\/
 request if ${url} ~= /^https:\/\/dataflow\.biliapi\.com\/log\/pbmobile\//i then reject(200)
 response if ${url} ~= /^https?:\/\/api\.bilibili\.com\/x\/vip\/window\/list\?/i then response.json.jq(".data.list = []")
 response if ${url} ~= /^https?:\/\/api\.bilibili\.com\/x\/vip\/web\/vip_center\/(v2|modules)/i then response.json.jq(".data.benefits = [] | .data.welfare = null | .data.free_welfare = null | .data.draw_cards_welfare = null | .data.draw_cards_welfare_v2 = null")
+request if ${url} ~= /^https:\/\/app\.bilibili\.com\/x\/resource\/peak\/download/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https:\/\/www\.bilibili\.com\/blackboard\/era\/.+\.html\?/i then script("https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/webpage.bilibili.js") with tag="哔哩哔哩去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/www\.bilibili\.com\/blackboard\/era\/.+\.html\?/i then script("https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/webpage.bilibili.js") with requires_body=true, tag="哔哩哔哩去广告补充"
 response if ${url} ~= /^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/(brand\/list|event\/list2|list|show)\?/i then script("https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https:\/\/api\.bilibili\.com\/pgc\/page\/(bangumi|cinema\/tab\?)/i then script("https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true, timeout=60
@@ -44,6 +45,7 @@ response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comm
 response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetCommonBanner/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/(?>app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.dynamic\.v\d\.Dynamic\/DynAll/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliProtoA.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/app\.bilibili\.com\/x\/resource\/(?>top\/activity|show\/tab\/v\d)\?/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliJson.js") with tag="哔哩哔哩去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/app\.bilibili\.com\/x\/v2\/splash/i then script("https://rucu6.pages.dev/Scripts/bilibili/json.js") with tag="哔哩哔哩去广告补充", requires_body=true
 
 [MitM]
-hostname=manga.bilibili.com, www.bilibili.com, api.bilibili.com, api.vc.bilibili.com, app.bilibili.com, live.bilibili.com, grpc.biliapi.net, cm.bilibili.com, dataflow.biliapi.com
+hostname=www.bilibili.com, manga.bilibili.com, api.bilibili.com, api.vc.bilibili.com, app.bilibili.com, live.bilibili.com, grpc.biliapi.net, cm.bilibili.com, dataflow.biliapi.com, ap?.bilibili.com

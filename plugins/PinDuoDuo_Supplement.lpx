@@ -1,5 +1,5 @@
 #!name=拼多多去广告补充
-#!desc=配合常用的拼多多去广告插件使用，只补它们没处理的接口（9 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的拼多多去广告插件使用，只补它们没处理的接口（14 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id1044283059
 #!author=flipped0119
 #!tag=去广告
@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3a/69/bc/3a69bc90-ca16-6b83-adef-d0e7fe1dad31/AppIcon-1x_U007emarketing-0-8-0-0-85-220-0.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:27:02
 
 [Rewrite]
 request if ${url} ~= /^http?:\/\/images\.pinduoduo\.com\/marketing\_api/i then reject(200)
@@ -19,9 +19,14 @@ request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/flow\/hungary\/windo
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\//i then reject(404)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/barrow\/query/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/pdd_live_moore_main_lego/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\//i then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/dunkirk\/subaru\/goods_list_v2\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/express\/post\/landing_page\/ad\/recommend_goods_list\/pickup_identity_code\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/xrec\/goods_rec\/pay_after_use_v2\?/i then reject_dict(200)
 
 [Script]
 response if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/alexa\/\w+\/hub/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/pdd.js") with tag="拼多多去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/m\.pinduoduo\.net\/comment_result\.html\?/i then script("https://rucu6.pages.dev/Scripts/pinduoduo.js") with tag="拼多多去广告补充", requires_body=true
 
 [MitM]
-hostname=video-dsp.pddpic.com, images.pinduoduo.com, api.pinduoduo.com
+hostname=video-dsp.pddpic.com, images.pinduoduo.com, api.pinduoduo.com, m.pinduoduo.net
