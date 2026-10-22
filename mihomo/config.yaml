@@ -1,0 +1,448 @@
+# mihomo（Clash Meta）通用模板：github.com/flipped0119/loon
+# 用法：把 proxy-providers 里的 url 换成你的机场订阅，其余不用改。地区按节点名自动归组；
+# 机场没有的地区组为空，mihomo 会在里面放一个 COMPATIBLE（等同直连），不要在服务分组里手动选空地区。
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+  - https://223.5.5.5/dns-query
+  - https://doh.pub/dns-query
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports:
+      - 80
+    TLS:
+      ports:
+      - 443
+    QUIC:
+      ports:
+      - 443
+rule-providers:
+  site-private:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs
+  ip-private:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs
+  site-category-ads-all:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs
+  site-openai:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs
+  site-anthropic:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/anthropic.mrs
+  site-google-gemini:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs
+  site-telegram:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+  ip-telegram:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs
+  site-youtube:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs
+  site-netflix:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
+  ip-netflix:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs
+  site-tiktok:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs
+  site-twitter:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs
+  site-google:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
+  ip-google:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
+  site-github:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs
+  site-microsoft:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs
+  site-apple:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs
+  site-geolocation-cn:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-cn.mrs
+  site-cn:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs
+  ip-cn:
+    type: http
+    format: mrs
+    interval: 86400
+    proxy: 🚀 节点选择
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs
+rules:
+- RULE-SET,site-private,DIRECT
+- RULE-SET,site-category-ads-all,🛑 广告拦截
+- RULE-SET,site-openai,🤖 AI 服务
+- RULE-SET,site-anthropic,🤖 AI 服务
+- RULE-SET,site-google-gemini,🤖 AI 服务
+- RULE-SET,site-telegram,📲 Telegram
+- RULE-SET,site-youtube,📺 YouTube
+- RULE-SET,site-netflix,🎬 Netflix
+- RULE-SET,site-tiktok,🎵 TikTok
+- RULE-SET,site-twitter,🐦 Twitter
+- RULE-SET,site-google,🔍 Google
+- RULE-SET,site-github,🐙 GitHub
+- RULE-SET,site-microsoft,🪟 Microsoft
+- RULE-SET,site-apple,🍎 Apple
+- RULE-SET,site-geolocation-cn,🇨🇳 国内网站
+- RULE-SET,site-cn,🇨🇳 国内网站
+- RULE-SET,ip-private,DIRECT,no-resolve
+- RULE-SET,ip-telegram,📲 Telegram,no-resolve
+- RULE-SET,ip-netflix,🎬 Netflix,no-resolve
+- RULE-SET,ip-google,🔍 Google,no-resolve
+- RULE-SET,ip-cn,🇨🇳 国内网站,no-resolve
+- MATCH,🐟 漏网之鱼
+proxy-providers:
+  机场:
+    type: http
+    url: "https://example.com/your-subscription"
+    interval: 86400
+    path: ./providers/airport.yaml
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 600
+proxies: []
+proxy-groups:
+- name: 🚀 节点选择
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: ♻️ 自动选择
+  type: url-test
+  include-all: true
+  filter: "^(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🖐 手动选择
+  type: select
+  include-all: true
+  filter: "^(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+- name: 🇭🇰 香港
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇭🇰|港|(?i:Hong ?Kong)|(?<![A-Za-z0-9])(HK|HKG|HKT|HKBN|HGC)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇹🇼 台湾
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇹🇼|台湾|台灣|台北|新北|彰化|新台|(深|沪|滬|呼|京|广|杭|莞|中|辽)台|🇨🇳.*(台|TW)|(台|TW).*🇨🇳|(?i:Tai ?wan|Taipei)|(?<![A-Za-z0-9])(TW|TWN)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇯🇵 日本
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇯🇵|日本|东京|東京|大阪|大坂|埼玉|(深|沪|滬|呼|京|广|杭|莞|中|辽)日|(?i:Japan|Tokyo|Osaka)|(?<![A-Za-z0-9])(JP|JPN)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇸🇬 新加坡
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇸🇬|新加坡|狮城|獅城|(深|沪|滬|呼|京|广|杭|莞|中|辽)新(?![台北])|(?i:Singapore)|(?<![A-Za-z0-9])(SG|SGP)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇺🇸 美国
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇺🇸|美国|美國|美西|美东|(深|沪|滬|呼|京|广|杭|莞|中|辽)美|洛杉矶|洛杉磯|圣何塞|聖何塞|硅谷|西雅图|波特兰|芝加哥|纽约|紐約|达拉斯|凤凰城|华盛顿|弗吉尼亚|俄勒冈|(?i:United ?States|America|Los ?Angeles|San ?Jose|Silicon ?Valley|Seattle|Portland|Chicago|New ?York|Dallas|Phoenix|Ashburn|Virginia|Oregon)|(?<![A-Za-z0-9])(US|USA|LAX|SJC)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇰🇷 韩国
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇰🇷|韩|韓|首尔|首爾|春川|(?i:Korea|Seoul|Chuncheon)|(?<![A-Za-z0-9])(KR|KOR)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇲🇾 马来西亚
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇲🇾|马来|馬來|吉隆坡|(?i:Malaysia|Kuala ?Lumpur)|(?<![A-Za-z0-9])(MY|MYS)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇪🇺 欧洲
+  type: url-test
+  include-all: true
+  filter: "^(?=.*(🇬🇧|🇩🇪|🇫🇷|🇳🇱|英国|英國|德国|德國|法国|法國|荷兰|荷蘭|伦敦|倫敦|法兰克福|巴黎|阿姆斯特丹|(深|沪|滬|呼|京|广|杭|莞|中|辽)德(?!.*线)|(?i:United ?Kingdom|Great ?Britain|Britain|England|Germany|France|Netherlands|London|Frankfurt|Paris|Amsterdam)|(?<![A-Za-z0-9])(UK|GB|GBR|DE|DEU|FR|FRA|NL|NLD)(?![A-Za-z])))(?!.*(回国|回國|校园|游戏|遊戲|🎮|(?<![A-Za-z0-9])(?i:game)(?![A-Za-z])|套餐|到期|有效期|剩余|已用|过期|官网|官網|网址|官址|客服|工单|订阅|流量|邮箱|群|(?i:expire|traffic|total|used|email))).*$"
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🛑 广告拦截
+  type: select
+  proxies:
+  - REJECT
+  - DIRECT
+  - 🚀 节点选择
+- name: 🤖 AI 服务
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 📲 Telegram
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 📺 YouTube
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🎬 Netflix
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🎵 TikTok
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🐦 Twitter
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🔍 Google
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🐙 GitHub
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT
+- name: 🪟 Microsoft
+  type: select
+  proxies:
+  - DIRECT
+  - 🚀 节点选择
+- name: 🍎 Apple
+  type: select
+  proxies:
+  - DIRECT
+  - 🚀 节点选择
+- name: 🇨🇳 国内网站
+  type: select
+  proxies:
+  - DIRECT
+  - 🚀 节点选择
+- name: 🐟 漏网之鱼
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - ♻️ 自动选择
+  - 🇭🇰 香港
+  - 🇹🇼 台湾
+  - 🇯🇵 日本
+  - 🇸🇬 新加坡
+  - 🇺🇸 美国
+  - 🇰🇷 韩国
+  - 🇲🇾 马来西亚
+  - 🇪🇺 欧洲
+  - 🖐 手动选择
+  - DIRECT

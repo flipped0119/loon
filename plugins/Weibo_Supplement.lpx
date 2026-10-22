@@ -1,0 +1,18 @@
+#!name=微博增强补充
+#!desc=配合常用的「微博去广告」插件使用：只补它没处理的接口（视频流广告与频道、首页红点与消息数、实验开关、直播头像栏、游客模式），并提供设置页（Safari 打开 https://api.weibo.cn/__qx_weibo_settings__/）。Loon 同一请求只执行第一条命中的脚本，所以不重复处理去广告插件已覆盖的接口。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Weibo.png
+#!openUrl=https://apps.apple.com/app/id350962117
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Script]
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/(?:api\/config)?(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博设置页"
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/api\/(?:save|reset)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博设置保存", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/video\/(?:flow_stream|flow_stream_cache|home_channels|remind_info)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博视频流与频道", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/remind\/(?:hometab_dot|unread_count)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博红点与未读数", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/(?:client\/abserver_list|live\/media_homelist|guest\/container_timeline_hot|guest\/push_active)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博其他", requires_body=true
+
+[MitM]
+hostname=api.weibo.cn
