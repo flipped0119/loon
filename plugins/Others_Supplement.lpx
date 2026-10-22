@@ -4,7 +4,7 @@
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
 #!tag=去广告
-#!date=2026-10-22 17:26:32
+#!date=2026-10-22 19:19:36
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -197,7 +197,7 @@ response if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_sho
 response if ${url} ~= /^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList)/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js") with tag="其他 App去广告补充", requires_body=true
 request if ${url} ~= /^https:\/\/www\.coolapk\.com\/link.*/ then script("https://raw.githubusercontent.com/VenenoSix24/Ivy-Script/refs/heads/main/Loon/script/Coolapk_Redirect.js") with tag="其他 App去广告补充", timeout=10
 request if ${url} ~= /^https?:\/\/testflight\.apple\.com\/v\d\/accounts\/.+?\/install$/ then script("https://gist.githubusercontent.com/NobyDa/9be418b93afc5e9c8a8f4d28ae403cf2/raw/TF_Download.js") with tag="其他 App去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(?:navigation\/resolve_url|browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch)(?:\?.*)?$/ then script("https://raw.githubusercontent.com/gholts/surge/main/scripts/youtube/response.js", "{") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(?:navigation\/resolve_url|browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch)(?:\?.*)?$/ then script("https://raw.githubusercontent.com/gholts/surge/main/scripts/youtube/response.js", "{") with tag="其他 App去广告补充", requires_body=true, binary_body_mode=true
 response if ${url} ~= /^https?:\/\/app\.zhuanzhuan\.com\/zz\/v\d\/zzlogic\/mywxcontinenthomepage/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zhuanzhuan.js") with tag="其他 App去广告补充", requires_body=true
 response if ${url} ~= /^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js") with tag="其他 App去广告补充", requires_body=true, timeout=60
 
