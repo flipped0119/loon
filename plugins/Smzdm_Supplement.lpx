@@ -1,25 +1,27 @@
 #!name=什么值得买去广告补充
 #!desc=配合常用的什么值得买去广告插件使用，只补它们没处理的接口（9 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id518213356
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/25/1a/fc/251afcc5-e765-908c-c9ca-dcda1239ff2c/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id518213356
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul/ then reject(200)
-request if ${url} ~= /^https:\/\/s3\.zdmimg\.com\/third\/index/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul/i then reject(200)
+request if ${url} ~= /^https:\/\/s3\.zdmimg\.com\/third\/index/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/article_releated_modul/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/baike-api\.smzdm\.com\/home_v3\/list/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/zhiyou\.m\.smzdm\.com\/user\/vip\/ajax_get_banner/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/haojia-api\.smzdm\.com\/ranking_list\/articles\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/user-api\.smzdm\.com\/vip\/creator_user_center/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/qianbao\.smzdm\.com\/v\d\/app\/home/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/s-api\.smzdm\.com\/sou\/(>?filter\/tags\/hot_tags|list_v\d\?)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/smzdm.js") with tag="什么值得买去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/article_releated_modul/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/baike-api\.smzdm\.com\/home_v3\/list/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/zhiyou\.m\.smzdm\.com\/user\/vip\/ajax_get_banner/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js") with tag="什么值得买去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/haojia-api\.smzdm\.com\/ranking_list\/articles\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/user-api\.smzdm\.com\/vip\/creator_user_center/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/qianbao\.smzdm\.com\/v\d\/app\/home/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js") with tag="什么值得买去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/s-api\.smzdm\.com\/sou\/(>?filter\/tags\/hot_tags|list_v\d\?)/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/smzdm.js") with tag="什么值得买去广告补充", requires_body=true
 
 [MitM]
 hostname=haojia.m.smzdm.com, baike-api.smzdm.com, zhiyou.m.smzdm.com, haojia-api.smzdm.com, user-api.smzdm.com, qianbao.smzdm.com, s-api.smzdm.com, s3.zdmimg.com

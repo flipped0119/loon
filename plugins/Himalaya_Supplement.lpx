@@ -1,42 +1,44 @@
 #!name=喜马拉雅去广告补充
 #!desc=配合常用的喜马拉雅去广告插件使用，只补它们没处理的接口（26 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id876336838
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bf/e1/68/bfe1687f-0b36-efcf-6427-d4e174d13c84/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id876336838
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\// then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status/ then reject(404)
-request if ${url} ~= /^https?:\/\/gslb.*\.xima.*\.com\// then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query)/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/minorProtection\/pop/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/collector\/xl\/v\d/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub\/)?hotWord/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub)?guideWord/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime/ then reject(404)
-request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)?/ then reject(404)
-request if ${url} ~= /^https?:\/\/passport\.ximalaya\.com\/friendship-mobile\/v1\/findFriendsBanner\/show\// then reject(404)
-request if ${url} ~= /^https?:\/\/xdcs-collector\.ximalaya\.com\/api\/v1\/realtime/ then reject(404)
-request if ${url} ~= /^https?:\/\/.+\.ximalaya\.com\/linkeye.+\/checkIP\?ip.+passport.ximalaya.com/ then reject(404)
-request if ${url} ~= /^https?:\/\/.+location\.ximalaya\.com/ then reject(404)
-request if ${url} ~= /^https?:\/\/ad\.ximalaya\.com/ then reject(404)
-request if ${url} ~= /^https?:\/\/passport\.ximalaya\.com\/user-http-app\/v1\/token\/refresh/ then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\//i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status/i then reject(404)
+request if ${url} ~= /^https?:\/\/gslb.*\.xima.*\.com\//i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query)/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile-user\/minorProtection\/pop/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/collector\/xl\/v\d/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub\/)?hotWord/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/(hub)?guideWord/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime/i then reject(404)
+request if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)?/i then reject(404)
+request if ${url} ~= /^https?:\/\/passport\.ximalaya\.com\/friendship-mobile\/v1\/findFriendsBanner\/show\//i then reject(404)
+request if ${url} ~= /^https?:\/\/xdcs-collector\.ximalaya\.com\/api\/v1\/realtime/i then reject(404)
+request if ${url} ~= /^https?:\/\/.+\.ximalaya\.com\/linkeye.+\/checkIP\?ip.+passport.ximalaya.com/i then reject(404)
+request if ${url} ~= /^https?:\/\/.+location\.ximalaya\.com/i then reject(404)
+request if ${url} ~= /^https?:\/\/ad\.ximalaya\.com/i then reject(404)
+request if ${url} ~= /^https?:\/\/passport\.ximalaya\.com\/user-http-app\/v1\/token\/refresh/i then reject(404)
 
 [Script]
-response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d\/category/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/.+((ximalaya)|(xmcdn)).+(mobile-user\/v2|mobile-web|queryCategoryPageData|discovery-feed\/v4|vip\/v1\/recommand|product\/detail\/v1|mobile\/v1\/album|playpage|album\/price\/ts|mobile\/user\/member).*$/ then script("https://raw.githubusercontent.com/WeiGiegie/666/main/xmly.js") with tag="喜马拉雅去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/mobile\.ximalaya\.com\/focus-mobile|(discovery-category|mobile-user)\/v\d\/(mix|category|homePage)/ then script("https://raw.githubusercontent.com/githubdulong/Script/master/xmly_json.js") with tag="喜马拉雅去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/focus-mobile\/focusPic/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d\/category/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js") with tag="喜马拉雅去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/.+((ximalaya)|(xmcdn)).+(mobile-user\/v2|mobile-web|queryCategoryPageData|discovery-feed\/v4|vip\/v1\/recommand|product\/detail\/v1|mobile\/v1\/album|playpage|album\/price\/ts|mobile\/user\/member).*$/i then script("https://raw.githubusercontent.com/WeiGiegie/666/main/xmly.js") with tag="喜马拉雅去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/mobile\.ximalaya\.com\/focus-mobile|(discovery-category|mobile-user)\/v\d\/(mix|category|homePage)/i then script("https://raw.githubusercontent.com/githubdulong/Script/master/xmly_json.js") with tag="喜马拉雅去广告补充", requires_body=true
 
 [MitM]
 hostname=passport.ximalaya.com, adse.ximalaya.com, mobile.ximalaya.com

@@ -1,39 +1,41 @@
 #!name=酷我音乐去广告补充
 #!desc=配合常用的酷我音乐去广告插件使用，只补它们没处理的接口（25 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id588673713
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fd/e6/e5/fde6e5b6-8ccd-9c86-e166-2da72d37ef3b/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220-0.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id588673713
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/finds\/module\?moduleId/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/banner\/myPage\?uid/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/play\/listening\/entrance\/music\?musicId/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/kwtemplatePage\/index\.html\?id=1157&app=bodianhdzx/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/bdvipact2205\/index\.html\?fromsrc=huodong/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/0e83c1821cd2681de08e20bec73d1e75/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/198c0b313fe9e53b03240c7b30b4acc9/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+/ then reject(404)
-request if ${url} ~= /^https?:\/\/img4\.kwcdn\.kuwo\.cn\/star\/upload\/.+/ then reject(404)
-request if ${url} ~= /^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/adBubble\/.+/ then reject(404)
-request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/(\w+\/)?advert/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/.*popup/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/pay\/vip\/lowPriceText/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/search\/topic\/word\/list/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/vipEnter/ then reject_dict(200)
-response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/scene/ then response.json.jq(".data.showShopEntry=false|.data.idolTabShow=true")
-response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/music\/recommendList/ then response.json.jq(".data.musicList[] |= del(.showAd)")
-response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/resource\/recommend/ then response.json.jq(".data.resourceList[] |= del(.resource)")
-response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/voice\/room\/v\d\/sidebar/ then response.json.jq("(.data) = {}")
-request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar/ then reject(404)
-request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/user\/freeMode/ then reject(404)
-request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/(?>pasterAdvert|startup)/ then reject(404)
-request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/newMenuList\/menuListInfo/ then reject(404)
-request if ${url} ~= /^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p\?op=get_advertright_endtime/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox/ then reject(404)
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/finds\/module\?moduleId/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/banner\/myPage\?uid/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/play\/listening\/entrance\/music\?musicId/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/kwtemplatePage\/index\.html\?id=1157&app=bodianhdzx/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/bdvipact2205\/index\.html\?fromsrc=huodong/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/0e83c1821cd2681de08e20bec73d1e75/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/198c0b313fe9e53b03240c7b30b4acc9/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+/i then reject(404)
+request if ${url} ~= /^https?:\/\/img4\.kwcdn\.kuwo\.cn\/star\/upload\/.+/i then reject(404)
+request if ${url} ~= /^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/adBubble\/.+/i then reject(404)
+request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/(\w+\/)?advert/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/.*popup/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/pay\/vip\/lowPriceText/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/search\/topic\/word\/list/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/vipEnter/i then reject_dict(200)
+response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/scene/i then response.json.jq(".data.showShopEntry=false|.data.idolTabShow=true")
+response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/music\/recommendList/i then response.json.jq(".data.musicList[] |= del(.showAd)")
+response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/resource\/recommend/i then response.json.jq(".data.resourceList[] |= del(.resource)")
+response if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/voice\/room\/v\d\/sidebar/i then response.json.jq("(.data) = {}")
+request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar/i then reject(404)
+request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/user\/freeMode/i then reject(404)
+request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/(?>pasterAdvert|startup)/i then reject(404)
+request if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/newMenuList\/menuListInfo/i then reject(404)
+request if ${url} ~= /^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p\?op=get_advertright_endtime/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox/i then reject(404)
 
 [MitM]
 hostname=bd-api.kuwo.cn, h5app.kuwo.cn, bodianimgcdn.kuwo.cn, rich.kuwo.cn, *.kwcdn.kuwo.cn, mobilead.kuwo.cn, wapi.kuwo.cn, audiobookpay.kuwo.cn, vip*.kuwo.cn

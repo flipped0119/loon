@@ -1,22 +1,24 @@
 #!name=汽车之家去广告补充
 #!desc=配合常用的汽车之家去广告插件使用，只补它们没处理的接口（8 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id385919493
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/26/40/0f/26400fa7-315a-e8cf-4670-4717eb7fbbbb/AppIcon-0-0-1x_U007epad-0-1-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id385919493
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb/ then reject(200)
-request if ${url} ~= /^https?:\/\/iobs\.pingan\.com\.cn\/download\/icore-aops-base-dmz-prd\/(YourSystemName|icore-apps-ad)/ then reject(200)
-request if ${url} ~= /^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox/ then reject(404)
-request if ${url} ~= /^https?:\/\/rsb\.pingan\.com\.cn\/brcp\/stp\/cust\/mobile\/source\/upgrade/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/rsb\.pingan\.com\.cn\/brcp\/bds\/cust\/ygfz\/up/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/b\.pingan\.com\.cn\/arch\/webtrends3\/collector-core/ then reject(404)
-request if ${url} ~= /^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/micro-cps-ceps-app\/box\/queryHomePagePopBox/ then reject(404)
-request if ${url} ~= /^https?:\/\/maam\.pingan\.com\.cn\/maam\/plugin\/getMarketGuideInfo/ then reject(404)
+request if ${url} ~= /^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb/i then reject(200)
+request if ${url} ~= /^https?:\/\/iobs\.pingan\.com\.cn\/download\/icore-aops-base-dmz-prd\/(YourSystemName|icore-apps-ad)/i then reject(200)
+request if ${url} ~= /^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox/i then reject(404)
+request if ${url} ~= /^https?:\/\/rsb\.pingan\.com\.cn\/brcp\/stp\/cust\/mobile\/source\/upgrade/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/rsb\.pingan\.com\.cn\/brcp\/bds\/cust\/ygfz\/up/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/b\.pingan\.com\.cn\/arch\/webtrends3\/collector-core/i then reject(404)
+request if ${url} ~= /^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/micro-cps-ceps-app\/box\/queryHomePagePopBox/i then reject(404)
+request if ${url} ~= /^https?:\/\/maam\.pingan\.com\.cn\/maam\/plugin\/getMarketGuideInfo/i then reject(404)
 
 [MitM]
 hostname=iobs.pingan.com.cn, hcz-member.pingan.com.cn, rsb.pingan.com.cn, b.pingan.com.cn, maam.pingan.com.cn

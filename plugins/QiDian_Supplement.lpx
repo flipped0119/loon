@@ -1,23 +1,25 @@
 #!name=起点读书去广告补充
 #!desc=配合常用的起点读书去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id534174796
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9f/ce/c5/9fcec5c5-cf80-67ac-1494-03180ee35b52/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-GLES2_U002c0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id534174796
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/mage\.if\.qidian\.com\/Atom\.axd\/Api\/Client\/GetConfIOS/ then reject_img(200)
-request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/client\/iosad/ then reject(404)
-request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/bookshelf\/getad/ then reject(404)
-request if ${url} ~= /^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v2\/adv\/getadvlistbatch/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mage\.if\.qidian\.com\/Atom\.axd\/Api\/Client\/GetConfIOS/i then reject_img(200)
+request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/client\/iosad/i then reject(404)
+request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/bookshelf\/getad/i then reject(404)
+request if ${url} ~= /^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v2\/adv\/getadvlistbatch/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/(v4\/client\/getsplashscreen|v2\/(deeplink\/geturl|dailyrecommend\/getdailyrecommend)|v1\/(client\/getconf$|bookshelf\/getHoverAdv|adv\/getadvlistbatch\?positions=iOS_tab))/ then script("https://raw.githubusercontent.com/app2smile/rules/master/js/qidian.js") with tag="起点读书去广告补充", requires_body=true, timeout=10
-response if ${url} ~= /^https?:\/\/mage(v\d)?\.if\.qidian\.com\/argus\/api\/v\d\/(deeplink\/geturl|client\/getconf|bookshelf\/getHoverAdv|dailyrecommend\/getdailyrecommend|assembly\/toolbar|user\/getaccountpage)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/qidian.js") with tag="起点读书去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/(v4\/client\/getsplashscreen|v2\/(deeplink\/geturl|dailyrecommend\/getdailyrecommend)|v1\/(client\/getconf$|bookshelf\/getHoverAdv|adv\/getadvlistbatch\?positions=iOS_tab))/i then script("https://raw.githubusercontent.com/app2smile/rules/master/js/qidian.js") with tag="起点读书去广告补充", requires_body=true, timeout=10
+response if ${url} ~= /^https?:\/\/mage(v\d)?\.if\.qidian\.com\/argus\/api\/v\d\/(deeplink\/geturl|client\/getconf|bookshelf\/getHoverAdv|dailyrecommend\/getdailyrecommend|assembly\/toolbar|user\/getaccountpage)/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/qidian.js") with tag="起点读书去广告补充", requires_body=true
 
 [MitM]
 hostname=magev6.if.qidian.com, mage.if.qidian.com, magev*.if.qidian.com

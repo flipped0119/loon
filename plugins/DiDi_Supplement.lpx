@@ -1,48 +1,50 @@
 #!name=滴滴去广告补充
 #!desc=配合常用的滴滴去广告插件使用，只补它们没处理的接口（32 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id554499054
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7d/23/3f/7d233f53-d18c-2a26-928e-51d474f0bd82/AppIcon_default-0-0-1x_U007emarketing-0-6-0-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id554499054
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices)/ then reject(200)
-request if ${url} ~= /^https?:\/\/omgup*\.xiaojukeji\.com\/api/ then reject(200)
-request if ${url} ~= /^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds/ then reject(404)
-request if ${url} ~= /^https?:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name=/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/ut\.xiaojukeji\.com\/ut\/kappa\/api\/owner\/index\/dialog/ then reject(404)
-request if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/confucius\/api\/privacy\/app\/popList/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=cms\.htw\.delivery/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.(?>combineHomepageInfo|mallRecommend)/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getMulti\?/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/api\.udache\.com\/gulfstream\/watson\/v1\/bubble\/getBubble/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getInsActivityV2/ then reject_dict(200)
-response if ${url} ~= /^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/oversea\/layout/ then response.json.jq("del(.data.instances.oversea_main_banner)")
-response if ${url} ~= /^https:\/\/api\.udache\.com\/gulfstream\/passenger-center\/v2\/other\/pInTripLayout/ then response.json.jq("del(.data.order_components[8].data) | .data.order_components |= map(select(.name != \"passenger_common_casper\"))")
-response if ${url} ~= /^https:\/\/mapi\.xiaojukeji\.com\/passenger-wallet\/api\/v[\d.]+\/wallet\/homepage/ then response.json.jq(".data.cardList |= (map(if .mcode == \"index_assets_v6\" then .detailData |= (del(.myCreditLimit) | .discountList |= .[:3] | del(.noticeList)) else . end) | map(select(.mcode == \"index_assets_v6\")))")
-response if ${url} ~= /^https:\/\/manhattan\.webapp\.xiaojukeji\.com\/zootopia\/api\/my-assets\/get-assets-data/ then response.json.jq("del(.data.myQuotaModularRes, .data.assetsData.myQuotaModularRes, .data.banner, .data.assetsData.banner, .data.myGuaranteeModularRes, .data.assetsData.myGuaranteeModularRes)")
-response if ${url} ~= /^https:\/\/manhattan\.webapp\.xiaojukeji\.com\/zootopia\/api\/my-assets\/module-is-show/ then response.json.jq(".data = []")
-response if ${url} ~= /^https:\/\/ddpay\.xiaojukeji\.com\/ddpay\/api\/manhattan-small-change\/get-all-config/ then response.json.jq(".data.result = []")
-response if ${url} ~= /^https:\/\/ddpay\.xiaojukeji\.com\/ddpay\/api\/manhattan-small-change\/get-apollo-config/ then response.json.jq(".data.result.hideList = []")
-request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/activityInfo/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/getPageDetail/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/energy\/hummer\/api\/resource\/display/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/am\/marketing\/api\/member\/facade\/charge\/personal\/center/ then reject_dict(200)
+request if ${url} ~= /https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices)/i then reject(200)
+request if ${url} ~= /^https?:\/\/omgup*\.xiaojukeji\.com\/api/i then reject(200)
+request if ${url} ~= /^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds/i then reject(404)
+request if ${url} ~= /^https?:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name=/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ut\.xiaojukeji\.com\/ut\/kappa\/api\/owner\/index\/dialog/i then reject(404)
+request if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/confucius\/api\/privacy\/app\/popList/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=cms\.htw\.delivery/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.(?>combineHomepageInfo|mallRecommend)/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getMulti\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.udache\.com\/gulfstream\/watson\/v1\/bubble\/getBubble/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getInsActivityV2/i then reject_dict(200)
+response if ${url} ~= /^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/oversea\/layout/i then response.json.jq("del(.data.instances.oversea_main_banner)")
+response if ${url} ~= /^https:\/\/api\.udache\.com\/gulfstream\/passenger-center\/v2\/other\/pInTripLayout/i then response.json.jq("del(.data.order_components[8].data) | .data.order_components |= map(select(.name != \"passenger_common_casper\"))")
+response if ${url} ~= /^https:\/\/mapi\.xiaojukeji\.com\/passenger-wallet\/api\/v[\d.]+\/wallet\/homepage/i then response.json.jq(".data.cardList |= (map(if .mcode == \"index_assets_v6\" then .detailData |= (del(.myCreditLimit) | .discountList |= .[:3] | del(.noticeList)) else . end) | map(select(.mcode == \"index_assets_v6\")))")
+response if ${url} ~= /^https:\/\/manhattan\.webapp\.xiaojukeji\.com\/zootopia\/api\/my-assets\/get-assets-data/i then response.json.jq("del(.data.myQuotaModularRes, .data.assetsData.myQuotaModularRes, .data.banner, .data.assetsData.banner, .data.myGuaranteeModularRes, .data.assetsData.myGuaranteeModularRes)")
+response if ${url} ~= /^https:\/\/manhattan\.webapp\.xiaojukeji\.com\/zootopia\/api\/my-assets\/module-is-show/i then response.json.jq(".data = []")
+response if ${url} ~= /^https:\/\/ddpay\.xiaojukeji\.com\/ddpay\/api\/manhattan-small-change\/get-all-config/i then response.json.jq(".data.result = []")
+response if ${url} ~= /^https:\/\/ddpay\.xiaojukeji\.com\/ddpay\/api\/manhattan-small-change\/get-apollo-config/i then response.json.jq(".data.result.hideList = []")
+request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/activityInfo/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/getPageDetail/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/energy\/hummer\/api\/resource\/display/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/energy\.xiaojukeji\.com\/am\/marketing\/api\/member\/facade\/charge\/personal\/center/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/freight\.xiaojukeji\.com\/gateway/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/xpget/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/daijia\.kuaidadi\.com\/gateway/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/daijia\.kuaidadi\.com:443\/gateway/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/common\.diditaxi\.com\.cn\/common\/v5/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/conf\.diditaxi\.com\.cn\/ota\/na\/yuantu\/infoList/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v\d\/other\/pGetSceneList/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js") with tag="滴滴去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/freight\.xiaojukeji\.com\/gateway/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/xpget/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/daijia\.kuaidadi\.com\/gateway/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/daijia\.kuaidadi\.com:443\/gateway/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/common\.diditaxi\.com\.cn\/common\/v5/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js") with tag="滴滴去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/conf\.diditaxi\.com\.cn\/ota\/na\/yuantu\/infoList/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v\d\/other\/pGetSceneList/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js") with tag="滴滴去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js") with tag="滴滴去广告补充", requires_body=true
 
 [MitM]
 hostname=res.xiaojukeji.com, omgup*.xiaojukeji.com, ct.xiaojukeji.com, freight.xiaojukeji.com, conf.diditaxi.com.cn, common.diditaxi.com.cn, daijia.kuaidadi.com, as.xiaojukeji.com, ut.xiaojukeji.com, api.udache.com, htwkop.xiaojukeji.com, mapi.xiaojukeji.com, manhattan.webapp.xiaojukeji.com, ddpay.xiaojukeji.com, energy.xiaojukeji.com

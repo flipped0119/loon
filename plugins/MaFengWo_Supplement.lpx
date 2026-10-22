@@ -1,23 +1,25 @@
 #!name=马蜂窝去广告补充
 #!desc=配合常用的马蜂窝去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id406596432
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/06/e8/db/06e8db14-b083-dcef-b660-9a72950734cb/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id406596432
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https:\/\/mapi.mafengwo.cn\/ad\/get_launch_ad_list\/v2/ then reject(200)
-request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/(travelguide\/)?ad/ then reject(404)
-request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/widget\/note\/get_widget_note/ then reject(404)
-request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/update\/check_update/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/config\/(get|mark)_(push|alert)_config/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/push\/get_local_push_config/ then reject(404)
+request if ${url} ~= /^https:\/\/mapi.mafengwo.cn\/ad\/get_launch_ad_list\/v2/i then reject(200)
+request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/(travelguide\/)?ad/i then reject(404)
+request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/widget\/note\/get_widget_note/i then reject(404)
+request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/update\/check_update/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/config\/(get|mark)_(push|alert)_config/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/system\/push\/get_local_push_config/i then reject(404)
 
 [Script]
-response if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/user\/profile\/get_(list|profile)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/mafengwo.js") with tag="马蜂窝去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/mapi\.mafengwo\.cn\/user\/profile\/get_(list|profile)/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/mafengwo.js") with tag="马蜂窝去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=mapi.mafengwo.cn

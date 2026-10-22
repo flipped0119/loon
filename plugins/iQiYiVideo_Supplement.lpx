@@ -1,30 +1,32 @@
 #!name=爱奇艺去广告补充
 #!desc=配合常用的爱奇艺去广告插件使用，只补它们没处理的接口（14 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id1190755526
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f7/c7/1d/f7c71d64-4810-e2d1-76a2-f49677fc085c/App_Icon-marketing.lsr/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id1190755526
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/iface\.iqiyi\.com\/api\/getNewAdInfo/ then reject(404)
-request if ${url} ~= /^https?:\/\/intl\.iqiyi\.com\/ad_external\// then reject(404)
-request if ${url} ~= /^https?:\/\/intl\.iqiyi\.com\/video\/advertise/ then reject(404)
-request if ${url} ~= /^https?:\/\/act\.vip\.iqiyi\.com\/interact\/api\/show\.do/ then reject(200)
-request if ${url} ~= /^https?:\/\/iface2\.iqiyi\.com\/fusion\/3\.0\/fusion_switch/ then reject_img(200)
-request if ${url} ~= /^http:\/\/static-s\.iqiyi\.com\/common\/.+\/Small_video\/a2\/af\/.+\.png/ then reject(404)
-request if ${url} ~= /https?:\/\/ssports\.iqiyi\.com\/app\// then reject(404)
-request if ${url} ~= /https?:\/\/ssports\.iqiyi\.com\/json\/shop\/shopInfo/ then reject(404)
-request if ${url} ~= /https?:\/\/static\.iqiyi\.com\/js\/common\/.+\.js/ then reject(404)
+request if ${url} ~= /^https?:\/\/iface\.iqiyi\.com\/api\/getNewAdInfo/i then reject(404)
+request if ${url} ~= /^https?:\/\/intl\.iqiyi\.com\/ad_external\//i then reject(404)
+request if ${url} ~= /^https?:\/\/intl\.iqiyi\.com\/video\/advertise/i then reject(404)
+request if ${url} ~= /^https?:\/\/act\.vip\.iqiyi\.com\/interact\/api\/show\.do/i then reject(200)
+request if ${url} ~= /^https?:\/\/iface2\.iqiyi\.com\/fusion\/3\.0\/fusion_switch/i then reject_img(200)
+request if ${url} ~= /^http:\/\/static-s\.iqiyi\.com\/common\/.+\/Small_video\/a2\/af\/.+\.png/i then reject(404)
+request if ${url} ~= /https?:\/\/ssports\.iqiyi\.com\/app\//i then reject(404)
+request if ${url} ~= /https?:\/\/ssports\.iqiyi\.com\/json\/shop\/shopInfo/i then reject(404)
+request if ${url} ~= /https?:\/\/static\.iqiyi\.com\/js\/common\/.+\.js/i then reject(404)
 
 [Script]
-response if ${url} ~= /^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/iqiyi_open_ads.js") with tag="爱奇艺去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/cards\.iqiyi\.com\/views_category\/3\.0\/(category_home|categorylib_content|film_hybrid)\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/cards\.iqiyi\.com\/views_search\/3\.0\/(hot_query_)?search\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/iface2\.iqiyi\.com\/views\/3\.0\/(bottom_theme|home_top_menu)\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/.*cupid\.iqiyi\.com\/mixer\?/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/iqiyi_open_ads.js") with tag="爱奇艺去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/cards\.iqiyi\.com\/views_category\/3\.0\/(category_home|categorylib_content|film_hybrid)\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/cards\.iqiyi\.com\/views_search\/3\.0\/(hot_query_)?search\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/iface2\.iqiyi\.com\/views\/3\.0\/(bottom_theme|home_top_menu)\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="爱奇艺去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=*cupid.iqiyi.com, iface.iqiyi.com, intl.iqiyi.com, act.vip.iqiyi.com, iface2.iqiyi.com, ssports.iqiyi.com, static.iqiyi.com

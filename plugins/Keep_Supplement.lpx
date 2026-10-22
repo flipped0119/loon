@@ -1,32 +1,34 @@
 #!name=Keep去广告补充
 #!desc=配合常用的Keep去广告插件使用，只补它们没处理的接口（16 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id952694580
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/80/79/ef/8079ef71-1064-54f2-ddd0-b26dfe62498e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id952694580
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/running\/v\d\/home\/dialog/ then reject(200)
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/kprime\/v\d\/popups\/primeGuide/ then reject(200)
-request if ${url} ~= /^https?:\/\/api.gotokeep.com\/cauchy\/growth\/init/ then reject(200)
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/ads\/v\d\/ads\/preload/ then reject(200)
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/training\/box\/config/ then reject(200)
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/anno\/v\d\/upgrade\/check/ then reject(200)
-request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/tool\/v1\/jump\/popup$/ then reject(404)
-request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/athena\/v1\/people\/my\/entry/ then reject(404)
-request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/ads/ then reject(404)
-request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/messenger\/v\d\/conversations\/unread/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/running\/v\d\/home\/dialog/i then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/kprime\/v\d\/popups\/primeGuide/i then reject(200)
+request if ${url} ~= /^https?:\/\/api.gotokeep.com\/cauchy\/growth\/init/i then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/ads\/v\d\/ads\/preload/i then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/training\/box\/config/i then reject(200)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/anno\/v\d\/upgrade\/check/i then reject(200)
+request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/tool\/v1\/jump\/popup$/i then reject(404)
+request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/athena\/v1\/people\/my\/entry/i then reject(404)
+request if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/ads/i then reject(404)
+request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/messenger\/v\d\/conversations\/unread/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v7\/people\/course\/(practiced|general)/ then script("https://raw.githubusercontent.com/Maasea/surgeModule/master/Script/Keep/course.js") with tag="Keep去广告补充", requires_body=true
-response if ${url} ~= /^https?:\/\/(api|kit).gotokeep\.com\/(nuocha|gerudo|athena|nuocha\/plans|suit\/v5\/smart|kprime\/v4\/suit\/sales)\// then script("https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v7\/people\/course\/(practiced|general)/i then script("https://raw.githubusercontent.com/Maasea/surgeModule/master/Script/Keep/course.js") with tag="Keep去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/(api|kit).gotokeep\.com\/(nuocha|gerudo|athena|nuocha\/plans|suit\/v5\/smart|kprime\/v4\/suit\/sales)\//i then script("https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=api.gotokeep.com

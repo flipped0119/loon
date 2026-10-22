@@ -1,27 +1,29 @@
 #!name=芒果TV去广告补充
 #!desc=配合常用的芒果TV去广告插件使用，只补它们没处理的接口（11 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id629774477
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/68/9a/2d/689a2db1-a033-3124-662f-7ad6ba7cba7b/AppIcon-0-0-1x_U007ephone-0-1-0-0-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id629774477
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/pcvideoyd\.titan\.mgtv\.com\/pb\// then reject_img(200)
-request if ${url} ~= /^https?:\/\/[\d\.]+\/odin\/c1\/(channel\/ads|skin\/config)\?/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/mobileso\.bz\.mgtv\.com\/spotlight\/search\/v1\?/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/v2\/goods\/guess_you_like/ then reject_dict(200)
-request if ${url} ~= /https:\/\/mgesq.api.mgtv.com\/v2\/user\/center\/icon/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/search\/goods\/rank/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/user\/center\/config/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/pcvideoyd\.titan\.mgtv\.com\/pb\//i then reject_img(200)
+request if ${url} ~= /^https?:\/\/[\d\.]+\/odin\/c1\/(channel\/ads|skin\/config)\?/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mobileso\.bz\.mgtv\.com\/spotlight\/search\/v1\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/v2\/goods\/guess_you_like/i then reject_dict(200)
+request if ${url} ~= /https:\/\/mgesq.api.mgtv.com\/v2\/user\/center\/icon/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/search\/goods\/rank/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/mgesq\.api\.mgtv\.com\/user\/center\/config/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/mob-st\.bz\.mgtv\.com\/odin\/c1\/channel\/index\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/dc2?\.bz\.mgtv\.com\/dynamic\/v1\/channel\/(index|vrsList)\/\w/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https?:\/\/mobile\.api\.mgtv\.com\/v10\/video\/info\?/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /https:\/\/mgesq.api.mgtv.com\/dsl\/index.+/ then script("https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/AdBlock/xmApp/xmApp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/mob-st\.bz\.mgtv\.com\/odin\/c1\/channel\/index\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/dc2?\.bz\.mgtv\.com\/dynamic\/v1\/channel\/(index|vrsList)\/\w/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/mobile\.api\.mgtv\.com\/v10\/video\/info\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /https:\/\/mgesq.api.mgtv.com\/dsl\/index.+/i then script("https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/AdBlock/xmApp/xmApp.js") with tag="芒果TV去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=pcvideoyd.titan.mgtv.com, mgesq.api.mgtv.com

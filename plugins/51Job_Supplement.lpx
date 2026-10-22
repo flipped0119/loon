@@ -1,22 +1,24 @@
 #!name=前程无忧去广告补充
 #!desc=配合常用的前程无忧去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id415443644
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9d/bf/64/9dbf6459-ff59-8d8c-9e06-ae5f2403fa6d/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id415443644
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/recommend-infos/ then reject(404)
-request if ${url} ~= /^https?:\/\/appapi\.51job(app)?\.com\/api\/util\/get_version/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/index\/last-version/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/guide\/home-page-top/ then reject(404)
-request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/notice-infos/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/recommend-infos/i then reject(404)
+request if ${url} ~= /^https?:\/\/appapi\.51job(app)?\.com\/api\/util\/get_version/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/index\/last-version/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/guide\/home-page-top/i then reject(404)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/notice-infos/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\// then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js") with tag="前程无忧去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\//i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js") with tag="前程无忧去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=cupid.51job, appapi.51job

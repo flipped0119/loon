@@ -1,21 +1,23 @@
 #!name=腾讯视频去广告补充
 #!desc=配合常用的腾讯视频去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id458318329
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ac/35/bd/ac35bd72-7019-51ec-e849-b928a4cdf7da/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id458318329
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/t_splash_info\// then reject(404)
-request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/targeted_ads/ then reject_img(200)
-request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/.*?_Ad\/\d+\.png/ then reject_img(200)
-request if ${url} ~= /^https?:\/\/qzonestyle\.gtimg\.cn\/qzone\/biz\/gdt\/mob\/sdk\/ios\/v2\// then reject_img(200)
-request if ${url} ~= /^https?:\/\/discuz\.gtimg\.cn\/cloud\/scripts\/discuz_tips\.js/ then reject_img(200)
-request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/\/upload\/kg_ad\/.+?\d{3,4}x\d{4}/ then reject(200)
-request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/kg_ad/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/t_splash_info\//i then reject(404)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/targeted_ads/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/.*?_Ad\/\d+\.png/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/qzonestyle\.gtimg\.cn\/qzone\/biz\/gdt\/mob\/sdk\/ios\/v2\//i then reject_img(200)
+request if ${url} ~= /^https?:\/\/discuz\.gtimg\.cn\/cloud\/scripts\/discuz_tips\.js/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/\/upload\/kg_ad\/.+?\d{3,4}x\d{4}/i then reject(200)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/kg_ad/i then reject_img(200)
 
 [MitM]
 hostname=y.gtimg.cn, qzonestyle.gtimg.cn, discuz.gtimg.cn

@@ -1,27 +1,29 @@
 #!name=朴朴超市去广告补充
 #!desc=配合常用的朴朴超市去广告插件使用，只补它们没处理的接口（11 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id1144025167
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/77/5a/08/775a082e-3a23-fb26-c37a-5ba4b956911e/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id1144025167
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/notification\/message_center\/unread_number/ then response.json.jq(".data = []")
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/member_card\/index\/my/ then reject(404)
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/search_input_ranking/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/assets\/discount\/order/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/marketing\/channel\/global_redeem\/top_tip\/v2/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/recommendation\/hub\/interests\/products\/v2/ then reject_dict(200)
-request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/member_card\/premium\/user_center/ then reject_dict(200)
+response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/notification\/message_center\/unread_number/i then response.json.jq(".data = []")
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/member_card\/index\/my/i then reject(404)
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/search_input_ranking/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/assets\/discount\/order/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/marketing\/channel\/global_redeem\/top_tip\/v2/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/recommendation\/hub\/interests\/products\/v2/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/member_card\/premium\/user_center/i then reject_dict(200)
 
 [Script]
-response if ${url} ~= /^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/master/pupumarket.js") with tag="朴朴超市去广告补充", requires_body=true
-response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/search\/hub\/search_box\/products\/v6/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/order_settlement\/detail/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/order\/orders\/list\/v4/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/master/pupumarket.js") with tag="朴朴超市去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/search\/hub\/search_box\/products\/v6/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/order_settlement\/detail/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https:\/\/j1\.pupuapi\.com\/client\/order\/orders\/list\/v4/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js") with tag="朴朴超市去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=j1.pupuapi.com

@@ -1,20 +1,22 @@
 #!name=斗鱼去广告补充
 #!desc=配合常用的斗鱼去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id863882795
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ba/f0/72/baf0729b-52de-0255-83e1-5bd17b456f29/AppIcon-0-0-1x_U007epad-0-1-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id863882795
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/staticlive.douyucdn.cn\/.+\/getStartSend/ then reject(404)
-request if ${url} ~= /^https?:\/\/staticlive.douyucdn.cn\/upload\/signs\// then reject(404)
-request if ${url} ~= /^https?:\/\/douyucdn.cn\/.+\/appapi\/getinfo/ then reject(404)
-request if ${url} ~= /^https?:\/\/capi.douyucdn.cn\/lapi\/sign\/app(api)?\/getinfo\?client_sys=ios/ then reject(404)
-request if ${url} ~= /^https?:\/\/capi\.douyucdn\.cn\/api\/ios_app\/check_update/ then reject_img(200)
-request if ${url} ~= /^https?:\/\/capi\.douyucdn\.cn\/api\/v1\/getStartSend?client_sys=ios/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/staticlive.douyucdn.cn\/.+\/getStartSend/i then reject(404)
+request if ${url} ~= /^https?:\/\/staticlive.douyucdn.cn\/upload\/signs\//i then reject(404)
+request if ${url} ~= /^https?:\/\/douyucdn.cn\/.+\/appapi\/getinfo/i then reject(404)
+request if ${url} ~= /^https?:\/\/capi.douyucdn.cn\/lapi\/sign\/app(api)?\/getinfo\?client_sys=ios/i then reject(404)
+request if ${url} ~= /^https?:\/\/capi\.douyucdn\.cn\/api\/ios_app\/check_update/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/capi\.douyucdn\.cn\/api\/v1\/getStartSend?client_sys=ios/i then reject_img(200)
 
 [MitM]
 hostname=staticlive.douyucdn.cn, capi.douyucdn.cn

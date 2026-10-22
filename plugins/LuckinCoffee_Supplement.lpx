@@ -1,20 +1,22 @@
 #!name=瑞幸咖啡去广告补充
 #!desc=配合常用的瑞幸咖啡去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id1296749505
 #!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/23/de/db/23dedb45-aa83-7cc8-c0cf-e47000cba016/AppIcon-0-0-1x_U007emarketing-0-6-0-85-220.png/120x120bb.png
-#!openUrl=https://apps.apple.com/app/id1296749505
-#!tag=去广告
-#!date=2026-10-22 17:24:51
-#!loon_version=3.5.1(998)
+#!date=2026-10-22 19:30:26
 
 [Rewrite]
-response if ${url} ~= /^https?:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page/ then response.body.replace(/\{.+\}/, "{\"status\":\"SUCCESS\"}")
-response if ${url} ~= /^https?:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main/ then response.body.replace(/"popTitle":".+?"/, "\"popTitle\":\"\"")
-request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/aigc\/showAIButton/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/base\/getSubscribeTemplate/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/order\/orderBanner/ then reject_dict(200)
-request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/market\/receiveCoupon\/receiveCouponPop/ then reject_dict(200)
+response if ${url} ~= /^https?:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page/i then response.body.replace(/\{.+\}/, "{\"status\":\"SUCCESS\"}")
+response if ${url} ~= /^https?:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main/i then response.body.replace(/"popTitle":".+?"/, "\"popTitle\":\"\"")
+request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/aigc\/showAIButton/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/base\/getSubscribeTemplate/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/m\/order\/orderBanner/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/capi\.lkcoffee\.com\/resource\/market\/receiveCoupon\/receiveCouponPop/i then reject_dict(200)
 
 [MitM]
 hostname=m.lkcoffee.com, capi.lkcoffee.com
