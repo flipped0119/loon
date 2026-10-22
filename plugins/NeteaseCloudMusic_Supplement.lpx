@@ -1,5 +1,5 @@
 #!name=网易云音乐去广告补充
-#!desc=配合常用的网易云音乐去广告插件使用，只补它们没处理的接口（37 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的网易云音乐去广告插件使用，只补它们没处理的接口（39 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id590338362
 #!author=flipped0119
 #!tag=去广告
@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2d/84/5f/2d845fe3-b1fc-b57b-d6d7-fe5ae6a468f5/appIconNew-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:23:38
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/content\/activity\/music\/jar\/template\/list/i then reject(200)
@@ -50,6 +50,8 @@ response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/link\
 response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/song\/play\/more\/list\/v\d/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/link\/position\/show\/resource/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/user\/follow\/users\/mixed\/get/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/home\/framework\/top\/tab/i then script("https://rucu6.pages.dev/Scripts/music163.js") with tag="网易云音乐去广告补充", requires_body=true, binary_body_mode=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipactivity\/app\/cashier\/setting\/get/i then script("https://rucu6.pages.dev/Scripts/music163.js") with tag="网易云音乐去广告补充", requires_body=true, binary_body_mode=true
 
 [MitM]
 hostname=interface*.music.163.com, yanxuan.nosdn.127.net, easyreadfs.nosdn.127.net, statistic.live.126.net

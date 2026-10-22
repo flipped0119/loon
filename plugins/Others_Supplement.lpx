@@ -1,5 +1,5 @@
 #!name=其他 App去广告补充
-#!desc=配合各 App去广告插件使用，只补它们没处理的接口（190 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合各 App去广告插件使用，只补它们没处理的接口（206 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!tag=去广告
 #!system=
@@ -7,7 +7,23 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:23:39
+
+[Rule]
+DOMAIN,apiv4-iyes.youku.com,REJECT
+DOMAIN,afdconf.baidu.com,REJECT
+DOMAIN,lc.map.baidu.com,REJECT
+DOMAIN-SUFFIX,cpro.baidu.com,REJECT
+DOMAIN-SUFFIX,pos.baidu.com,REJECT
+DOMAIN,duclick.baidu.com,REJECT
+DOMAIN,nsclick.baidu.com,REJECT
+DOMAIN-SUFFIX,mdt.qq.com,REJECT
+DOMAIN,ad.zijieapi.com,REJECT
+DOMAIN,mon.zijieapi.com,REJECT
+DOMAIN-SUFFIX,e.qq.com,REJECT
+DOMAIN,adsmind.apdcdn.tc.qq.com,REJECT
+DOMAIN,adsmind.tc.qq.com,REJECT
+DOMAIN,m-vali.cp31.ott.cibntv.net,REJECT
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.alimama\.abyss\.unionpage\.get/i then reject(200)
@@ -127,6 +143,12 @@ request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/csat\/getNPSQuestionnaire/
 request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/search\/getQuestionnaireByOrderInfo/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/index\/queryTabBubble/i then reject(404)
 request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/smartmp\/querySmartDecision/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/newclient\.map\.baidu\.com\/client\/crossmarketing\/\?container=du_aide_module/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/newclient\.map\.baidu\.com\/client\/noticebar\/get\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/newclient\.map\.baidu\.com\/grow-engine\/api\/common\/userHome\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/yongche\.baidu\.com\/goorder\/passenger\/notice/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/yongche\.baidu\.com\/gomarketing\/api\/activity\/talos\/activitycard\?/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/yongche\.baidu\.com\/goorder\/passenger\/baseinfo/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ad\.mcloud\.139\.com\/advertapi/i then reject(200)
 request if ${url} ~= /^https?:\/\/middle\.yun\.139\.com\/openapi\/cardConfig\/queryCardInfoV3/i then reject(200)
 request if ${url} ~= /^https?:\/\/mrp\.mcloud\.139\.com\/mc\/mc-client-service\/openapi\/letter\/query/i then reject_dict(200)
@@ -143,13 +165,10 @@ request if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/\?loginType=11/i then reject_
 response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/user\/profile/i then response.json.jq(".data.level = 20 | .data.fans = 99999 | .data.experience = 94575543 | .data.next_level_experience = 200000000")
 response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/account\/loadConfig\?key=my_page_card_config/i then response.json.jq(".data |= map(select(.entityType != \"textLink\" and (.entityId != 1001 and .entityId != 1003 and .entityId != 1004 and .entityId != 1005)) | if .entities then .entities |= map(select(.entityType != \"textLink\")) else . end)")
 request if ${url} ~= /^https?:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/(resource|banner)/i then reject(200)
-request if ${url} ~= /^http:\/\/ads.?s?ervice(retry)?\.(kugou|kglink).(com|cn)\/v\d\//i then reject(200)
 response if ${url} ~= /^https?:\/\/apapia-sqk\.manmanbuy\.com\/index_json\.ashx/i then response.body.replace(/splashAD/, "removed")
 request if ${url} ~= /^https?:\/\/open\.taou\.com\/maimai\/launch_ad/i then reject(200)
 request if ${url} ~= /^https?:\/\/api\.taou\.com\/sdk\/global\/splash_ad/i then reject(200)
 request if ${url} ~= /^https?:\/\/track\.mm\.taou\.com\/v\d\/track/i then reject(200)
-request if ${url} ~= /^https?:\/\/testflight\.apple\.com\/v2\/accounts\/.*\/apps\/\d*\/builds\/\d*\/install/i then request.body.replace(/storefrontId" : ".*"/, "storefrontId\" : \"143441-1,29\"")
-response if ${url} ~= /^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt/i then response.json.jq(".receipt.in_app[].expires_date_ms = \"4092599349000\" | .latest_receipt_info[].expires_date_ms = \"4092599349000\" | .pending_renewal_info[].auto_renew_status = \"1\"")
 request if ${url} ~= /^https?:\/\/god\.gameyw\.netease\.com\/v\d\/ad\/serving\/app-start/i then reject(200)
 request if ${url} ~= /^https:\/\/god\.gameyw\.netease\.com\/v\d\/ad/i then reject(404)
 request if ${url} ~= /^https:\/\/god\.gameyw\.netease\.com\/v\d\/app\/static\/conf\/getByModuleNameList$/i then reject_dict(200)
@@ -198,10 +217,9 @@ response if ${url} ~= /^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphon
 response if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/startup.js") with tag="其他 App去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList)/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js") with tag="其他 App去广告补充", requires_body=true
 request if ${url} ~= /^https:\/\/www\.coolapk\.com\/link.*/i then script("https://raw.githubusercontent.com/VenenoSix24/Ivy-Script/refs/heads/main/Loon/script/Coolapk_Redirect.js") with tag="其他 App去广告补充", timeout=10
-request if ${url} ~= /^https?:\/\/testflight\.apple\.com\/v\d\/accounts\/.+?\/install$/i then script("https://gist.githubusercontent.com/NobyDa/9be418b93afc5e9c8a8f4d28ae403cf2/raw/TF_Download.js") with tag="其他 App去广告补充", requires_body=true, timeout=60
-response if ${url} ~= /^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(?:navigation\/resolve_url|browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch)(?:\?.*)?$/i then script("https://raw.githubusercontent.com/gholts/surge/main/scripts/youtube/response.js", "{") with tag="其他 App去广告补充", requires_body=true, binary_body_mode=true
+response if ${url} ~= /^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(?:navigation\/resolve_url|browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch)(?:\?.*)?$/i then script("https://raw.githubusercontent.com/gholts/surge/main/scripts/youtube/response.js") with tag="其他 App去广告补充", requires_body=true, binary_body_mode=true
 response if ${url} ~= /^https?:\/\/app\.zhuanzhuan\.com\/zz\/v\d\/zzlogic\/mywxcontinenthomepage/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zhuanzhuan.js") with tag="其他 App去广告补充", requires_body=true
 response if ${url} ~= /^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js") with tag="其他 App去广告补充", requires_body=true, timeout=60
 
 [MitM]
-hostname=acs4miniapp-inner.m.taobao.com, afd.baidu.com, api.gameplus.qq.com, api.smart.jd.com, app.mval.qq.com, appconf.mail.163.com, appwk.baidu.com, bdsp-x.jd.com, bgw.xinyue.qq.com, comapi.reader.qq.com, commontgw.reader.qq.com, djcapp.game.qq.com, dsp-x.jd.com, iphone.ac.qq.com, iyes.youku.com, jdread-api.jd.com, lop-proxy.jd.com, m.you.163.com, mi.gdt.qq.com, mobads.baidu.com, ms.jr.jd.com, newclient.map.baidu.com, otheve.beacon.qq.com, r.inews.qq.com, us.l.qq.com, wxa.wxs.qq.com, mlol.qt.qq.com, i.weread.qq.com, news.ssp.qq.com, b2baifanfan.baidu.com, *.tieba.baidu.com, sofire.baidu.com, zhidao.baidu.com, update.pan.baidu.com, 4gimg.map.qq.com, baidu.com, btrace.qq.com, dns.jd.com, img.alicdn.com, m.jd.com, m.qianbao.qq.com, news.l.qq.com, ossgw.alicdn.com, ossweb-img.qq.com, p.du.163.com, ssl.kohsocialapp.qq.com, static.gameplus.qq.com, tc.qq.com, webcdn.m.qq.com, qt.qq.com, imgcache.qq.com, 3gimg.qq.com, video.dispatch.tc.qq.com, gw.alicdn.com, ups.youku.com, r.l.youku.com, m.youku.com, api.mobile.youku.com, ad.api.3g.youku.com, szextshort.weixin.qq.com, *.tc.qq.com, omts.tc.qq.com, variety.tc.qq.com, vmind.qqvideo.tc.qq.com, www.taobao.com, r6.mo.baidu.com, res.mi.baidu.com, erebor.douban.com, g.alicdn.com, music.y.qq.com, h5api.sginput.qq.com, acs.youku.com, mdn.alicdn.com, apd-vlive.apdcdn.tc.qq.com, sec.sginput.qq.com, aiqicha.baidu.com, outfliggys.m.taobao.com, bk.bingo.qq.com, api.map.baidu.com, yixiu-abtest.alicdn.com, storage.jd.com, *tieba*.baidu.com, payapp.weixin.qq.com, ad.mcloud.139.com, middle.yun.139.com, mrp.mcloud.139.com, www.123pan.com, mime.baidu.com, mbd.baidu.com, api.douban.com, frodo.douban.com, napi.ithome.com, api.m.jd.com, api.coolapk.com, www.coolapk.com, api.kmovie.gifshow.com, apapia-sqk.manmanbuy.com, open.taou.com, api.taou.com, track.mm.taou.com, testflight.apple.com, buy.itunes.apple.com, god.gameyw.netease.com, support.you.163.com, a.qiumibao.com, www.baidu.com, capis*.didapinche.com, capis.didapinche.com, www.didapinche.com, youtubei.googleapis.com, api.xueqiu.com, promo.xueqiu.com, images.client.vip.xunlei.com, vali.cp31.ott.cibntv.net, app.zhuanzhuan.com, gw.api.ddxq.mobi, maicai.api.ddxq.mobi, oss.umetrip.com, home.umetrip.com, api.xiaoyuzhoufm.com, dl.wechat.com
+hostname=acs4miniapp-inner.m.taobao.com, afd.baidu.com, api.gameplus.qq.com, api.smart.jd.com, app.mval.qq.com, appconf.mail.163.com, appwk.baidu.com, bdsp-x.jd.com, bgw.xinyue.qq.com, comapi.reader.qq.com, commontgw.reader.qq.com, djcapp.game.qq.com, dsp-x.jd.com, iphone.ac.qq.com, iyes.youku.com, jdread-api.jd.com, lop-proxy.jd.com, m.you.163.com, mi.gdt.qq.com, mobads.baidu.com, ms.jr.jd.com, newclient.map.baidu.com, otheve.beacon.qq.com, r.inews.qq.com, us.l.qq.com, wxa.wxs.qq.com, mlol.qt.qq.com, i.weread.qq.com, news.ssp.qq.com, b2baifanfan.baidu.com, *.tieba.baidu.com, sofire.baidu.com, zhidao.baidu.com, update.pan.baidu.com, 4gimg.map.qq.com, baidu.com, btrace.qq.com, dns.jd.com, img.alicdn.com, m.jd.com, m.qianbao.qq.com, news.l.qq.com, ossgw.alicdn.com, ossweb-img.qq.com, p.du.163.com, ssl.kohsocialapp.qq.com, static.gameplus.qq.com, tc.qq.com, webcdn.m.qq.com, qt.qq.com, imgcache.qq.com, 3gimg.qq.com, video.dispatch.tc.qq.com, gw.alicdn.com, ups.youku.com, r.l.youku.com, m.youku.com, api.mobile.youku.com, ad.api.3g.youku.com, szextshort.weixin.qq.com, *.tc.qq.com, omts.tc.qq.com, variety.tc.qq.com, vmind.qqvideo.tc.qq.com, www.taobao.com, r6.mo.baidu.com, res.mi.baidu.com, erebor.douban.com, g.alicdn.com, music.y.qq.com, h5api.sginput.qq.com, acs.youku.com, mdn.alicdn.com, apd-vlive.apdcdn.tc.qq.com, sec.sginput.qq.com, aiqicha.baidu.com, outfliggys.m.taobao.com, bk.bingo.qq.com, api.map.baidu.com, yixiu-abtest.alicdn.com, storage.jd.com, *tieba*.baidu.com, payapp.weixin.qq.com, yongche.baidu.com, ad.mcloud.139.com, middle.yun.139.com, mrp.mcloud.139.com, www.123pan.com, mime.baidu.com, mbd.baidu.com, api.douban.com, frodo.douban.com, napi.ithome.com, api.m.jd.com, api.coolapk.com, www.coolapk.com, api.kmovie.gifshow.com, apapia-sqk.manmanbuy.com, open.taou.com, api.taou.com, track.mm.taou.com, god.gameyw.netease.com, support.you.163.com, a.qiumibao.com, www.baidu.com, capis*.didapinche.com, capis.didapinche.com, www.didapinche.com, youtubei.googleapis.com, api.xueqiu.com, promo.xueqiu.com, images.client.vip.xunlei.com, vali.cp31.ott.cibntv.net, app.zhuanzhuan.com, gw.api.ddxq.mobi, maicai.api.ddxq.mobi, oss.umetrip.com, home.umetrip.com, api.xiaoyuzhoufm.com, dl.wechat.com

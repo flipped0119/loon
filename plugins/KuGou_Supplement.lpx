@@ -1,0 +1,22 @@
+#!name=酷狗音乐去广告补充
+#!desc=配合常用的酷狗音乐去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!openUrl=https://apps.apple.com/app/id472208016
+#!author=flipped0119
+#!tag=去广告
+#!system=
+#!system_version=
+#!loon_version=3.5.1(998)
+#!homepage=https://github.com/flipped0119/loon
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ad/3a/d4/ad3ad455-06c1-eaa5-7c47-a99169cb599d/AppIcon-0-0-1x_U007epad-0-1-85-220.png/120x120bb.png
+#!date=2026-10-22 22:23:38
+
+[Rule]
+DOMAIN,adsfile.bssdlbig.kugou.com,REJECT
+DOMAIN,adsfilebssdlbig.tx.kugou.com,REJECT
+DOMAIN,kgmobilestat.kugou.com,REJECT
+DOMAIN,kgmobilestatbak.kugou.com,REJECT
+DOMAIN,mobilelog.kugou.com,REJECT
+DOMAIN,splashimgbssdl.yun.kugou.com,REJECT
+
+[Rewrite]
+request if ${url} ~= /^http:\/\/ads.?s?ervice(retry)?\.(kugou|kglink).(com|cn)\/v\d\//i then reject(200)

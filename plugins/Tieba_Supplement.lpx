@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7a/1e/74/7a1e74e5-262e-ef03-55a2-3d55d7eacd11/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:23:39
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/ad\/getFeedAd/i then reject(200)
@@ -18,7 +18,7 @@ response if ${url} ~= /^https:\/\/tiebac\.baidu\.com\/livefeed\/feed/i then resp
 [Script]
 response if ${url} ~= /^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd/i then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js") with tag="百度贴吧去广告补充", requires_body=true, binary_body_mode=true
 response if ${url} ~= /^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/(c\/(s\/sync|f\/(ad\/getSplashAd|frs\/(page|threadlist|generalTabList)|pb\/(pic)?page|excellent\/personalized))$|tiebaads\/commonbatch\?)/i then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js") with tag="百度贴吧去广告补充", requires_body=true, timeout=10
-response if ${url} ~= /^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd/i then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js", "[0]") with tag="百度贴吧去广告补充", requires_body=true, timeout=10, binary_body_mode=true
+response if ${url} ~= /^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd/i then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js") with tag="百度贴吧去广告补充", requires_body=true, timeout=10, binary_body_mode=true
 
 [MitM]
 hostname=tiebac.baidu.com, tieba.baidu.com

@@ -1,5 +1,5 @@
 #!name=菜鸟去广告补充
-#!desc=配合常用的菜鸟去广告插件使用，只补它们没处理的接口（15 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的菜鸟去广告插件使用，只补它们没处理的接口（17 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id951610982
 #!author=flipped0119
 #!tag=去广告
@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/60/95/c36095e1-89c6-68b7-8d78-776b41bf9369/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-22 22:23:38
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow\.cn/i then reject(200)
@@ -21,6 +21,7 @@ request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainia
 request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cncreditmarket\.hit\.getactivityhit\.cn/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(acquire|event|close)/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/h5\/mtop\.cainiao\.guoguo\.tdwxgateway\.ads/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.home\.tabbar\.marketing\.get\.cn/i then reject_dict(200)
 
 [Script]
 response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn/i then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/cainiao_json.js") with tag="菜鸟去广告补充", requires_body=true
@@ -28,6 +29,7 @@ response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cain
 response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js") with tag="菜鸟去广告补充", requires_body=true, timeout=60
 response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js") with tag="菜鸟去广告补充", requires_body=true, timeout=60
 response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/cainiao.js") with tag="菜鸟去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn/i then script("https://rucu6.pages.dev/Scripts/cainiao.js") with tag="菜鸟去广告补充", requires_body=true
 
 [MitM]
 hostname=cn-acs.m.cainiao.com
