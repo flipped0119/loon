@@ -5,15 +5,15 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b7/ed/61/b7ed610e-a3ef-4684-4862-935158e58f07/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id324684580
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/spclient.wg.spotify.com\/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer)/ then reject_img(200)
-^https?:\/\/spclient\.wg\.spotify\.com\/.+doubleclick - reject-img
-^https?:\/\/spclient\.wg\.spotify\.com\/.+event - reject-200
-^https?:\/\/spclient\.wg\.spotify\.com\/.+promoted - reject-img
-^https?:\/\/spclient\.wg\.spotify\.com\/.+sponsored - reject-img
+request if ${url} ~= /^https?:\/\/spclient\.wg\.spotify\.com\/.+doubleclick/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/spclient\.wg\.spotify\.com\/.+event/ then reject(200)
+request if ${url} ~= /^https?:\/\/spclient\.wg\.spotify\.com\/.+promoted/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/spclient\.wg\.spotify\.com\/.+sponsored/ then reject_img(200)
 request if ${url} ~= /^https?:\/\/(?>gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com(:443)?\/(?>ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+event|.+sponsored|.+promoted)/ then reject_img(200)
 request if ${url} ~= /^https?:\/\/(?>gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com(:443)?\/artistview\/v1\/artist\/(.*)&platform=iphone/ then redirect(302, "https://$1.spotify.com/artistview/v1/artist/$2&platform=ipad")
 

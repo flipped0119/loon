@@ -5,18 +5,18 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/13/a0/a4/13a0a4c6-2507-1738-1c2e-0dfea8f8d638/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id6737541723
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/sams-user\/(window\/getGoUpPlus|screen_promotion\/get)/ then reject(200)
-^https?:\/\/api-sams\.walmartmobile\.cn\/.*(screen_promotion|getTotalUnreadCount|getGoUpPlus).* - reject
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/channel\/portal\/AdgroupData reject-dict
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/configuration\/personCenterEntrance\/query reject-dict
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/trade\/order\/getOftenBuyGoods reject-dict
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/goods-portal\/spu\/searchRecommendPool reject-dict
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/configuration\/appVersionUpdate\/getAppVersionUpdateInfo reject-dict
-^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/configuration\/portal\/beUpdate reject-dict
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/.*(screen_promotion|getTotalUnreadCount|getGoUpPlus).*/ then reject(404)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/channel\/portal\/AdgroupData/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/configuration\/personCenterEntrance\/query/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/trade\/order\/getOftenBuyGoods/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/goods-portal\/spu\/searchRecommendPool/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v\d\/sams\/configuration\/appVersionUpdate\/getAppVersionUpdateInfo/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api-sams\.walmartmobile\.cn\/api\/v1\/sams\/configuration\/portal\/beUpdate/ then reject_dict(200)
 
 [MitM]
 hostname=api-sams.walmartmobile.cn

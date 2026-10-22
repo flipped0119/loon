@@ -5,7 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/b1/4a/d4b14a2f-73e2-a36d-49e7-ff8492fa7e06/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id387682726
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -18,13 +18,13 @@ request if ${url} ~= /^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.fc\.resou
 request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.aicloud\.splash/ then reject(200)
 response if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba.*mytab/ then response.json.jq(".data.model.children |= map(select(.name | contains(\"营销\") | not))")
 request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query.*etao_splash/ then reject(200)
-^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.tmall\.wireless - reject-200
-^https:\/\/(heic|gw)\.alicdn\.com\/imgextra\/i\d\/.+-tps-(702-758|1125-1602)\.(heic|jpg|png) - reject-200
-^https?:\/\/heic\.alicdn\.com\/tps\/i4\/.+?\.jpg_1200x1200q90\.jpg_\.heic$ - reject-200
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.exposure\.get\/ - reject
-^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.hippotown\.tabbar\.info reject
-^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.crm\.platform\.ma\.recommend reject-dict
-^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.mimir\.recommend\.after\.purchase\.activity reject-dict
+request if ${url} ~= /^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.tmall\.wireless/ then reject(200)
+request if ${url} ~= /^https:\/\/(heic|gw)\.alicdn\.com\/imgextra\/i\d\/.+-tps-(702-758|1125-1602)\.(heic|jpg|png)/ then reject(200)
+request if ${url} ~= /^https?:\/\/heic\.alicdn\.com\/tps\/i4\/.+?\.jpg_1200x1200q90\.jpg_\.heic$/ then reject(200)
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.exposure\.get\// then reject(404)
+request if ${url} ~= /^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.hippotown\.tabbar\.info/ then reject(404)
+request if ${url} ~= /^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.crm\.platform\.ma\.recommend/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.mimir\.recommend\.after\.purchase\.activity/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.guide\.guess\.what\.you\.like/ then reject(404)
 request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.tripbaymax\.busi\.buyer\.promote\.track/ then reject(404)
 request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.traffic\.ai\.chat\.init/ then reject(404)

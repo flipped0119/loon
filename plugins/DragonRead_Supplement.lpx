@@ -5,15 +5,15 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/96/95/43/9695437f-a41e-5c5d-0e07-17318b52fbf5/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1468454200
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https?:\/\/gurd\.snssdk\.com\/src\/server\/v3\/package - reject
-^https?:\/\/.+\.snssdk\.com\/video\/play\/1\/toutiao\/.+\/mp4 - reject
-^https?:\/\/.+\.snssdk.com\/api\/ad\/.+ - reject
-^https?:\/\/.+\.snssdk\.com\/motor\/operation\/activity\/display\/config\/V2\/ - reject-200
-^https?:\/\/[\w-]+\.snssdk\.com\/.+_ad\/ - reject
+request if ${url} ~= /^https?:\/\/gurd\.snssdk\.com\/src\/server\/v3\/package/ then reject(404)
+request if ${url} ~= /^https?:\/\/.+\.snssdk\.com\/video\/play\/1\/toutiao\/.+\/mp4/ then reject(404)
+request if ${url} ~= /^https?:\/\/.+\.snssdk.com\/api\/ad\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/.+\.snssdk\.com\/motor\/operation\/activity\/display\/config\/V2\// then reject(200)
+request if ${url} ~= /^https?:\/\/[\w-]+\.snssdk\.com\/.+_ad\// then reject(404)
 
 [MitM]
 hostname=gurd.snssdk.com, i-lq.snssdk.com, reading-hl.snssdk.com

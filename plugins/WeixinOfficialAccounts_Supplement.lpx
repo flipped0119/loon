@@ -5,13 +5,13 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/61/70/2e/61702e05-0531-165f-5cd3-012c8b5b3b20/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id414478124
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https?:\/\/mp\.weixin\.qq.com\/mp\/ad_complaint - reject
-^https?:\/\/mp\.weixin\.qq.com\/mp\/ad_video - reject
-^https?:\/\/mp\.weixin\.qq.com\/mp\/advertisement_report - reject
+request if ${url} ~= /^https?:\/\/mp\.weixin\.qq.com\/mp\/ad_complaint/ then reject(404)
+request if ${url} ~= /^https?:\/\/mp\.weixin\.qq.com\/mp\/ad_video/ then reject(404)
+request if ${url} ~= /^https?:\/\/mp\.weixin\.qq.com\/mp\/advertisement_report/ then reject(404)
 request if ${url} ~= /^https?:\/\/mp\.weixin\.qq\.com\/wapad\/getaddata\?action=getad/ then reject(200)
 request if ${url} ~= /^https?:\/\/mp\.weixin\.qq\.com\/wapad\/reportaddata\?action=exposure_report/ then reject(200)
 

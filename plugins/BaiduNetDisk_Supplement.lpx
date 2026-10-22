@@ -5,7 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ba/8b/68/ba8b6852-3b4a-05b4-f9d4-d37d1a6bf580/AppIcon-0-0-1x_U007ephone-0-1-0-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id547166701
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -15,18 +15,18 @@ request if ${url} ~= /^https:\/\/pan\.baidu\.com\/feed\/hotlist/ then reject(200
 request if ${url} ~= /^https:\/\/pan\.baidu\.com\/queryintent\/queryhint/ then reject(200)
 request if ${url} ~= /^https:\/\/pan\.baidu\.com\/coins\/center\/notice/ then reject(200)
 request if ${url} ~= /^https:\/\/pan\.baidu\.com\/recommend\/shortseries\/list/ then reject_dict(200)
-^https:\/\/pan\.baidu\.com\/pmall\/order\/privilege\/info - reject
-^https:\/\/pan\.baidu\.com\/api\/useractivity\/activity - reject
-^http:\/\/pan\.baidu\.com\/act\/.+\/bchannel\/list - reject
-^https:\/\/pan\.baidu\.com\/api\/certuser\/get - reject
-^https:\/\/pan\.baidu\.com\/component\/view\/(1510|1130)\?vip - reject
-^https?:\/\/pan\.baidu\.com\/act\/.+\/bchannel\/list reject
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/pmall\/order\/privilege\/info/ then reject(404)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/api\/useractivity\/activity/ then reject(404)
+request if ${url} ~= /^http:\/\/pan\.baidu\.com\/act\/.+\/bchannel\/list/ then reject(404)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/api\/certuser\/get/ then reject(404)
+request if ${url} ~= /^https:\/\/pan\.baidu\.com\/component\/view\/(1510|1130)\?vip/ then reject(404)
+request if ${url} ~= /^https?:\/\/pan\.baidu\.com\/act\/.+\/bchannel\/list/ then reject(404)
 request if ${url} ~= /^https?:\/\/pan\.baidu\.com\/buy\/ad\// then reject(200)
 
 [Script]
 response if ${url} ~= /^https:\/\/pan\.baidu\.com\/rest\/.*\/membership\/user\?method=gamecenter/ then script("https://ddgksf2013.top/scripts/bdpan.ads.js") with tag="百度网盘去广告补充", requires_body=true
 response if ${url} ~= /^https:\/\/pan\.baidu\.com\/feed\/cardinfos/ then script("https://ddgksf2013.top/scripts/bdpan.ads.js") with tag="百度网盘去广告补充", requires_body=true
-http-response https:\/\/pan\.baidu\.com\/rest\/2\.0\/membership\/user requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度网盘去广告补充
+response if ${url} ~= /https:\/\/pan\.baidu\.com\/rest\/2\.0\/membership\/user/ then script("https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js") with tag="百度网盘去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/baiduPan.js") with tag="百度网盘去广告补充", requires_body=true
 
 [MitM]

@@ -5,10 +5,13 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0d/cb/53/0dcb5343-74eb-a65a-bb19-304fe55da537/WeiboAppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id350962117
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:26:32
 #!loon_version=3.5.1(998)
 
 [Rewrite]
+request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/ad\/weibointl\?/ then reject_dict(200)
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get_searching_info&/ then response.body.mock("json", "{\"retcode\":0,\"info\":\"\",\"data\":{\"expiration_time\":\"86400\",\"cards\":[{\"tip\":\"搜索微博\",\"word\":\"\"}]}}", 200)
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?ct=feed&a=search_topic&/ then response.body.mock("json", "{\"retcode\":0,\"info\":\"\",\"data\":[],\"ext\":{}}", 200)
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get_coopen_ads&/ then response.json.jq(".data |= . + {\"ad_list\":[],\"pic_ad\":[],\"gdt_video_ad_ios\":[],\"display_ad\":0,\"ad_ios_id\":null,\"app_ad_ios_id\":null,\"reserve_ad_ios_id\":\"\",\"reserve_app_ad_ios_id\":\"\",\"ad_duration\":604800,\"ad_cd_interval\":604800}")
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=trends&/ then response.json.jq("if .data.order then .data.order = [\"search_topic\"] end")
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=search_topic&/ then response.json.jq("if .data.search_topic.cards[0].type == \"searchtop\" then del(.data.search_topic.cards[0]) end")
@@ -21,11 +24,6 @@ request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/guest\/cardlist/ then reject
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/!\/sug\/list\/finderchangemode/ then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/profile\/recommend_popusers/ then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/client\/version/ then reject_dict(200)
-
-[Map Local]
-^https?:\/\/api\.weibo\.cn\/2\/ad\/weibointl\? header="content-type: application/json" data-type=text data="{}"
-^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get_searching_info& header="content-type: text/html" data-type=text data="{"retcode":0,"info":"","data":{"expiration_time":"86400","cards":[{"tip":"搜索微博","word":""}]}}"
-^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?ct=feed&a=search_topic& header="content-type: text/html" data-type=text data="{"retcode":0,"info":"","data":[],"ext":{}}"
 
 [Script]
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/(?:api\/config)?(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充"

@@ -5,18 +5,18 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9f/ce/c5/9fcec5c5-cf80-67ac-1494-03180ee35b52/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-GLES2_U002c0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id534174796
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https?:\/\/mage\.if\.qidian\.com\/Atom\.axd\/Api\/Client\/GetConfIOS - reject-img
-^https://magev6.if.qidian.com/argus/api/v1/client/iosad - reject
-^https://magev6.if.qidian.com/argus/api/v1/bookshelf/getad - reject
-^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh reject-dict
-^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v2\/adv\/getadvlistbatch reject-dict
+request if ${url} ~= /^https?:\/\/mage\.if\.qidian\.com\/Atom\.axd\/Api\/Client\/GetConfIOS/ then reject_img(200)
+request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/client\/iosad/ then reject(404)
+request if ${url} ~= /^https:\/\/magev6.if.qidian.com\/argus\/api\/v1\/bookshelf\/getad/ then reject(404)
+request if ${url} ~= /^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v2\/adv\/getadvlistbatch/ then reject_dict(200)
 
 [Script]
-http-response ^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/(v4\/client\/getsplashscreen|v2\/(deeplink\/geturl|dailyrecommend\/getdailyrecommend)|v1\/(client\/getconf$|bookshelf\/getHoverAdv|adv\/getadvlistbatch\?positions=iOS_tab)) script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qidian.js, requires-body=true, timeout=10, tag=起点读书去广告补充
+response if ${url} ~= /^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/(v4\/client\/getsplashscreen|v2\/(deeplink\/geturl|dailyrecommend\/getdailyrecommend)|v1\/(client\/getconf$|bookshelf\/getHoverAdv|adv\/getadvlistbatch\?positions=iOS_tab))/ then script("https://raw.githubusercontent.com/app2smile/rules/master/js/qidian.js") with tag="起点读书去广告补充", requires_body=true, timeout=10
 response if ${url} ~= /^https?:\/\/mage(v\d)?\.if\.qidian\.com\/argus\/api\/v\d\/(deeplink\/geturl|client\/getconf|bookshelf\/getHoverAdv|dailyrecommend\/getdailyrecommend|assembly\/toolbar|user\/getaccountpage)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/qidian.js") with tag="起点读书去广告补充", requires_body=true
 
 [MitM]

@@ -5,13 +5,13 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3a/69/bc/3a69bc90-ca16-6b83-adef-d0e7fe1dad31/AppIcon-1x_U007emarketing-0-8-0-0-85-220-0.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1044283059
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^http?:\/\/images\.pinduoduo\.com\/marketing\_api - reject-200
-^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\/ reject
-^https:\/\/images\.pinduoduo\.com\/mrk\/ reject
+request if ${url} ~= /^http?:\/\/images\.pinduoduo\.com\/marketing\_api/ then reject(200)
+request if ${url} ~= /^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\// then reject(404)
+request if ${url} ~= /^https:\/\/images\.pinduoduo\.com\/mrk\// then reject(404)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/app_popup/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/flow\/hungary\/window\/global/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\// then reject(404)

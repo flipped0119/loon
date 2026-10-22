@@ -5,20 +5,20 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c4/43/e4/c443e452-f7d4-de38-f5c3-2bb85eb6ed74/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id899529698
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/appVersion\/detectionUpgrade/ then reject(200)
 request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen/ then reject(200)
-^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list - reject-200
-^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-video\/video\/app\/video\/labelClusterList reject-dict
-^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/bms\/queryRecommend reject-dict
-^https?:\/\/mcs-mimp-web\.sf-express\.com\/mcs-mimp\/integralPlanet\/getCxAdvertiseList reject-dict
-^https?:\/\/ucmp-static\.sf-express\.com\/proxy\/wxbase\/wxTicket\/wxLiveStreamInfo\?pageNo reject-dict
-^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query reject-dict
-^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberManage\/memberEquity\/queryRecommendEquity reject-dict
-^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberActLengthy\/fullGiveActivityService\/fullGiveInfo reject-dict
+request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list/ then reject(200)
+request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-video\/video\/app\/video\/labelClusterList/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/bms\/queryRecommend/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mcs-mimp-web\.sf-express\.com\/mcs-mimp\/integralPlanet\/getCxAdvertiseList/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ucmp-static\.sf-express\.com\/proxy\/wxbase\/wxTicket\/wxLiveStreamInfo\?pageNo/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberManage\/memberEquity\/queryRecommendEquity/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberActLengthy\/fullGiveActivityService\/fullGiveInfo/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/module-config\/query/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/index\/home\/get(?>Popup|Layout)/ then reject(404)
 request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/account\/coupon\/getUserCouponCnt/ then reject(404)

@@ -5,20 +5,20 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fd/e6/e5/fde6e5b6-8ccd-9c86-e166-2da72d37ef3b/AppIcon-1x_U007emarketing-0-7-0-0-sRGB-85-220-0.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id588673713
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https:\/\/bd-api\.kuwo\.cn\/api\/service\/finds\/module\?moduleId - reject-dict
-^https:\/\/bd-api\.kuwo\.cn\/api\/service\/banner\/myPage\?uid - reject-dict
-^https:\/\/bd-api\.kuwo\.cn\/api\/play\/listening\/entrance\/music\?musicId - reject-dict
-^https:\/\/h5app\.kuwo\.cn\/m\/kwtemplatePage\/index\.html\?id=1157&app=bodianhdzx - reject-dict
-^https:\/\/h5app\.kuwo\.cn\/m\/bdvipact2205\/index\.html\?fromsrc=huodong - reject-dict
-^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/0e83c1821cd2681de08e20bec73d1e75 - reject-dict
-^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/198c0b313fe9e53b03240c7b30b4acc9 - reject-dict
-^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+ - reject
-^https?:\/\/img4\.kwcdn\.kuwo\.cn\/star\/upload\/.+ - reject
-^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/adBubble\/.+ - reject
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/finds\/module\?moduleId/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/service\/banner\/myPage\?uid/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/bd-api\.kuwo\.cn\/api\/play\/listening\/entrance\/music\?musicId/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/kwtemplatePage\/index\.html\?id=1157&app=bodianhdzx/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/h5app\.kuwo\.cn\/m\/bdvipact2205\/index\.html\?fromsrc=huodong/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/0e83c1821cd2681de08e20bec73d1e75/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/bodianimgcdn\.kuwo\.cn\/images\/198c0b313fe9e53b03240c7b30b4acc9/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/img4\.kwcdn\.kuwo\.cn\/star\/upload\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/adBubble\/.+/ then reject(404)
 request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/(\w+\/)?advert/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/.*popup/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/bd-api\.kuwo\.cn\/api\/pay\/vip\/lowPriceText/ then reject_dict(200)

@@ -5,26 +5,26 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/60/95/c36095e1-89c6-68b7-8d78-776b41bf9369/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id951610982
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow\.cn/ then reject(200)
 request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.app\.home\.v\d+\.bottom\.area/ then reject(200)
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.cncommunity\.my\.station\.query\.cn reject-dict
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(batch\.show\.v2|index)\.cn reject-dict
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbopen\.miniapp\.recommend\.cpc\.cn reject-dict
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(acquire|event|close)\.cn reject-dict
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cnactivitycenter reject-dict
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cncreditmarket\.hit\.getactivityhit\.cn reject-dict
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.cncommunity\.my\.station\.query\.cn/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(batch\.show\.v2|index)\.cn/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbopen\.miniapp\.recommend\.cpc\.cn/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(acquire|event|close)\.cn/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cnactivitycenter/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cncreditmarket\.hit\.getactivityhit\.cn/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(acquire|event|close)/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/h5\/mtop\.cainiao\.guoguo\.tdwxgateway\.ads/ then reject_dict(200)
 
 [Script]
 response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/cainiao_json.js") with tag="菜鸟去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/cainiao_json.js") with tag="菜鸟去广告补充", requires_body=true
-http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60, tag=菜鸟去广告补充, enable=true
-http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60, tag=菜鸟去广告补充, enable=true
+response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js") with tag="菜鸟去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js") with tag="菜鸟去广告补充", requires_body=true, timeout=60
 response if ${url} ~= /^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/cainiao.js") with tag="菜鸟去广告补充", requires_body=true
 
 [MitM]

@@ -5,18 +5,18 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9d/bf/64/9dbf6459-ff59-8d8c-9e06-ae5f2403fa6d/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id415443644
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/recommend-infos reject
-^https?:\/\/appapi\.51job(app)?\.com\/api\/util\/get_version reject-dict
-^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/index\/last-version reject-dict
-^https?:\/\/cupid\.51job(app)?\.com\/open\/guide\/home-page-top reject
-^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/notice-infos reject-dict
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/recommend-infos/ then reject(404)
+request if ${url} ~= /^https?:\/\/appapi\.51job(app)?\.com\/api\/util\/get_version/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/index\/last-version/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/guide\/home-page-top/ then reject(404)
+request if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/notice-infos/ then reject_dict(200)
 
 [Script]
-http-response ^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\/ script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60, tag=前程无忧去广告补充, enable=true
+response if ${url} ~= /^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\// then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js") with tag="前程无忧去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=cupid.51job, appapi.51job

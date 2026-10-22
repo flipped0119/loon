@@ -5,18 +5,18 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/58/f3/31/58f331f7-80fb-db5d-a742-096caec94228/AppIcon-0-0-1x_U007emarketing-0-3-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1444411068
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/peisongapi\.meituan\.com\/client\/getInitiateImage/ then reject(200)
 request if ${url} ~= /^https?:\/\/.*\.meituan\.com\/api\/v\d\/(openscreen\?ad|appstatus\?ad|loadInfo\?|startpicture)/ then reject(200)
-^https:\/\/richmanrules\.ksedt\.com\/intellectWaterfall(Bidding)?\/find - reject
-^https?:\/\/www\.meituan\.com\/api\/v\d\/appstatus\? - reject
-^https?:\/\/apimobile\.meituan\.com\/appupdate\/mach\/checkUpdate? - reject
-^https?:\/\/p\.meituan\.com\/api\/privacy\/config - reject
-^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement - reject-dict
-^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList reject-dict
+request if ${url} ~= /^https:\/\/richmanrules\.ksedt\.com\/intellectWaterfall(Bidding)?\/find/ then reject(404)
+request if ${url} ~= /^https?:\/\/www\.meituan\.com\/api\/v\d\/appstatus\?/ then reject(404)
+request if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/appupdate\/mach\/checkUpdate?/ then reject(404)
+request if ${url} ~= /^https?:\/\/p\.meituan\.com\/api\/privacy\/config/ then reject(404)
+request if ${url} ~= /^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/appupdate/ then reject(404)
 request if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/group\/v\d\/recommend\/unity\/recommends/ then reject(404)
 request if ${url} ~= /^https?:\/\/portal-portm\.meituan\.com\/horn_ios/ then reject_dict(200)

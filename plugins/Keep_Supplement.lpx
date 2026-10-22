@@ -5,7 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/80/79/ef/8079ef71-1064-54f2-ddd0-b26dfe62498e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id952694580
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -24,9 +24,9 @@ request if ${url} ~= /^https:\/\/api\.gotokeep\.com\/messenger\/v\d\/conversatio
 response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/course/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/keepStyle.js") with tag="Keep去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/athena\/v7\/people\/course\/(practiced|general)/ then script("https://raw.githubusercontent.com/Maasea/surgeModule/master/Script/Keep/course.js") with tag="Keep去广告补充", requires_body=true
-http-response ^https?:\/\/(api|kit).gotokeep\.com\/(nuocha|gerudo|athena|nuocha\/plans|suit\/v5\/smart|kprime\/v4\/suit\/sales)\/ script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js, requires-body=true, timeout=60 ,tag=Keep去广告补充
-http-response ^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60, tag=Keep去广告补充, enable=true
-http-response ^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60, tag=Keep去广告补充, enable=true
+response if ${url} ~= /^https?:\/\/(api|kit).gotokeep\.com\/(nuocha|gerudo|athena|nuocha\/plans|suit\/v5\/smart|kprime\/v4\/suit\/sales)\// then script("https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport/ then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js") with tag="Keep去广告补充", requires_body=true, timeout=60
 
 [MitM]
 hostname=api.gotokeep.com

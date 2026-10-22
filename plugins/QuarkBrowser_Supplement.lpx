@@ -5,16 +5,16 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5e/d4/d0/5ed4d09d-4b9c-0b7c-b080-585534ca9962/AppIcon-0-0-1x_U007ephone-0-1-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id1160172628
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-^https?:\/\/ocean\.shuqireader\.com\/api\/ad\/adserver\/.+ - reject
-^https?:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/ad.+ - reject
-^http:\/\/message\.shuqireader\.com\/message\/.+ - reject
-^http:\/\/.+\.shuqireader\.com\/sapi\/.+ - reject
-^https?:\/\/message\.shuqireader\.com\/message\/.+ reject
-^https?:\/\/.+\.shuqireader\.com\/sapi\/.+ reject
+request if ${url} ~= /^https?:\/\/ocean\.shuqireader\.com\/api\/ad\/adserver\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/ad.+/ then reject(404)
+request if ${url} ~= /^http:\/\/message\.shuqireader\.com\/message\/.+/ then reject(404)
+request if ${url} ~= /^http:\/\/.+\.shuqireader\.com\/sapi\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/message\.shuqireader\.com\/message\/.+/ then reject(404)
+request if ${url} ~= /^https?:\/\/.+\.shuqireader\.com\/sapi\/.+/ then reject(404)
 
 [MitM]
 hostname=ocean.shuqireader.com, message.shuqireader.com

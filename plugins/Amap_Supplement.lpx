@@ -5,7 +5,7 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/74/5a/15/745a1507-ef38-a474-2bbf-66826e29dc09/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id461703208
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:24:51
 #!loon_version=3.5.1(998)
 
 [Rewrite]
@@ -16,8 +16,8 @@ request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_info
 request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution/ then reject(404)
 request if ${url} ~= /^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif/ then reject_img(200)
 request if ${url} ~= /^https?:\/\/.*\.amap\.com\/ws\/valueadded\/weather/ then reject_dict(200)
-^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/tips_adv\? reject-dict
-^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\? reject-dict
+request if ${url} ~= /^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/tips_adv\?/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\?/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/m5-zb\.amap\.com\/ws\/boss\/end\/recommend/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/oss\.amap\.com\/ws\/banner\/lists\/\?/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/m\d-zb\.amap\.com\/ws\/boss\/(order\/car\/king_toolbox_car_bubble|tips\/onscene_visual_optimization)/ then reject_dict(200)

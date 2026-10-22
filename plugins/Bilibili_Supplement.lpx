@@ -5,23 +5,24 @@
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d3/25/b7/d325b78e-392f-402d-5927-94327f0c4499/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/120x120bb.png
 #!openUrl=https://apps.apple.com/app/id736536022
 #!tag=去广告
-#!date=2026-10-22 16:38:18
+#!date=2026-10-22 17:26:32
 #!loon_version=3.5.1(998)
 
 [Rewrite]
+request if ${url} ~= /^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v1\.Comic\/(Flash|ListFlash|GetActivityTab|GetBubbles)\?/ then reject_dict(200)
 response if ${url} ~= /^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v1\.(Comic\/AppInit|Home\/HomeFeed)\?/ then response.json.jq(".data as $data | .data[(\"activity_tab\", \"flash\", \"operate\") | select($data[.])] = null | if .data.feeds then .data.feeds |= map(select(.type | IN(15, 30) | not)) end")
-^https:\/\/api\.bilibili\.com\/x\/mengqi\/v1\/resource\? reject-dict
-^https:\/\/api\.bilibili\.com\/x\/v2\/dm\/qoe\/show\? reject-dict
-^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/v\d\/Search\/recommend_words reject-dict
-^https?:\/\/api\.vc\.bilibili\.com\/topic_svr\/v1\/topic_svr reject-dict
-^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/mix_uplist reject-dict
-^https:\/\/app\.bilibili\.com\/x\/resource\/ip reject
-^https:\/\/api\.bilibili\.com\/x\/web-interface\/zone\?jsonp reject-200
-(^https:\/\/live\.bilibili\.com\/\d+)((\?.*)) 302 $1
-^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Shop\/GetShopItems - reject-dict
-^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.SeasonV\d\/GetSeasonInfo - reject-dict
-^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.Read\/ActInfo - reject-200
-^https?:\/\/manga\.bilibili\.com\/twirp\/novel\.v\d\.Novel\/MoreRecommend - reject-dict
+request if ${url} ~= /^https:\/\/api\.bilibili\.com\/x\/mengqi\/v1\/resource\?/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.bilibili\.com\/x\/v2\/dm\/qoe\/show\?/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/v\d\/Search\/recommend_words/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.vc\.bilibili\.com\/topic_svr\/v1\/topic_svr/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/mix_uplist/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/app\.bilibili\.com\/x\/resource\/ip/ then reject(404)
+request if ${url} ~= /^https:\/\/api\.bilibili\.com\/x\/web-interface\/zone\?jsonp/ then reject(200)
+request if ${url} ~= /(^https:\/\/live\.bilibili\.com\/\d+)((\?.*))/ then redirect(302, "$1")
+request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Shop\/GetShopItems/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.SeasonV\d\/GetSeasonInfo/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.Read\/ActInfo/ then reject(200)
+request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/novel\.v\d\.Novel\/MoreRecommend/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/risk\.v\d\.Risk\/AppUpgradeCheck/ then reject_dict(200)
 response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/Recommend/ then response.body.replace(/data/, "data0")
 request if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.PopUp\/GetAvailablePopUp/ then reject_dict(200)
@@ -31,16 +32,13 @@ request if ${url} ~= /^https:\/\/dataflow\.biliapi\.com\/log\/pbmobile\// then r
 response if ${url} ~= /^https?:\/\/api\.bilibili\.com\/x\/vip\/window\/list\?/ then response.json.jq(".data.list = []")
 response if ${url} ~= /^https?:\/\/api\.bilibili\.com\/x\/vip\/web\/vip_center\/(v2|modules)/ then response.json.jq(".data.benefits = [] | .data.welfare = null | .data.free_welfare = null | .data.draw_cards_welfare = null | .data.draw_cards_welfare_v2 = null")
 
-[Map Local]
-^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v1\.Comic\/(Flash|ListFlash|GetActivityTab|GetBubbles)\? header="content-type: application/json" data-type=text data="{}"
-
 [Script]
 response if ${url} ~= /^https:\/\/www\.bilibili\.com\/blackboard\/era\/.+\.html\?/ then script("https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/webpage.bilibili.js") with tag="哔哩哔哩去广告补充", requires_body=true
-http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/(brand\/list|event\/list2|list|show)\? script-path = https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js, requires-body = true, tag=哔哩哔哩去广告补充
-http-response ^https:\/\/api\.bilibili\.com\/pgc\/page\/(bangumi|cinema\/tab\?) script-path = https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js, requires-body = true, tag=哔哩哔哩去广告补充
-http-response ^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60, tag=哔哩哔哩去广告补充, enable=true
-http-response ^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/GetInitInfo script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60, tag=哔哩哔哩去广告补充, enable=true
-http-response ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comment\/Main script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60, tag=哔哩哔哩去广告补充, enable=true
+response if ${url} ~= /^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/(brand\/list|event\/list2|list|show)\?/ then script("https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js") with tag="哔哩哔哩去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/api\.bilibili\.com\/pgc\/page\/(bangumi|cinema\/tab\?)/ then script("https://github.com/Moli-X/Resources/raw/main/Loon/Bilibili/Bilibili_remove_ads.js") with tag="哔哩哔哩去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/GetInitInfo/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comment\/Main/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true, timeout=60
 response if ${url} ~= /^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetCommonBanner/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/(?>app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.dynamic\.v\d\.Dynamic\/DynAll/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliProtoA.js") with tag="哔哩哔哩去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/app\.bilibili\.com\/x\/resource\/(?>top\/activity|show\/tab\/v\d)\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliJson.js") with tag="哔哩哔哩去广告补充", requires_body=true
