@@ -1,0 +1,18 @@
+#!name=Spotify去广告补充
+#!desc=配合常用的Spotify去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/spclient.wg.spotify.com\/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer)/ then reject_img(200)
+^https?:\/\/spclient\.wg\.spotify\.com\/.+doubleclick - reject-img
+^https?:\/\/spclient\.wg\.spotify\.com\/.+event - reject-200
+^https?:\/\/spclient\.wg\.spotify\.com\/.+promoted - reject-img
+^https?:\/\/spclient\.wg\.spotify\.com\/.+sponsored - reject-img
+request if ${url} ~= /^https?:\/\/(?>gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com(:443)?\/(?>ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+event|.+sponsored|.+promoted)/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/(?>gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com(:443)?\/artistview\/v1\/artist\/(.*)&platform=iphone/ then redirect(302, "https://$1.spotify.com/artistview/v1/artist/$2&platform=ipad")
+
+[MitM]
+hostname=spclient.wg.spotify.com, gae2-spclient.spotify.com, guc3-spclient.spotify.com

@@ -1,0 +1,22 @@
+#!name=拼多多去广告补充
+#!desc=配合常用的拼多多去广告插件使用，只补它们没处理的接口（9 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^http?:\/\/images\.pinduoduo\.com\/marketing\_api - reject-200
+^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\/ reject
+^https:\/\/images\.pinduoduo\.com\/mrk\/ reject
+request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/app_popup/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/flow\/hungary\/window\/global/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\// then reject(404)
+request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/barrow\/query/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/pdd_live_moore_main_lego/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/alexa\/\w+\/hub/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/pdd.js") with tag="拼多多去广告补充", requires_body=true
+
+[MitM]
+hostname=video-dsp.pddpic.com, images.pinduoduo.com, api.pinduoduo.com

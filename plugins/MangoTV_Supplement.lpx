@@ -1,0 +1,24 @@
+#!name=芒果TV去广告补充
+#!desc=配合常用的芒果TV去广告插件使用，只补它们没处理的接口（11 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/pcvideoyd\.titan\.mgtv\.com\/pb\/ - reject-img
+^https?:\/\/[\d\.]+\/odin\/c1\/(channel\/ads|skin\/config)\? reject-dict
+^https?:\/\/mobileso\.bz\.mgtv\.com\/spotlight\/search\/v1\? reject-dict
+^https:\/\/mgesq\.api\.mgtv\.com\/v2\/goods\/guess_you_like reject-dict
+https://mgesq.api.mgtv.com/v2/user/center/icon reject-dict
+^https:\/\/mgesq\.api\.mgtv\.com\/search\/goods\/rank reject-dict
+^https:\/\/mgesq\.api\.mgtv\.com\/user\/center\/config reject-dict
+
+[Script]
+http-response ^https?:\/\/mob-st\.bz\.mgtv\.com\/odin\/c1\/channel\/index\? script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=芒果TV去广告补充,顶部tab, enable=true
+http-response ^https?:\/\/dc2?\.bz\.mgtv\.com\/dynamic\/v1\/channel\/(index|vrsList)\/\w script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=芒果TV去广告补充, enable=true
+http-response ^https?:\/\/mobile\.api\.mgtv\.com\/v10\/video\/info\? script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=芒果TV去广告补充, enable=true
+http-response https://mgesq.api.mgtv.com/dsl/index.+ script-path=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/AdBlock/xmApp/xmApp.js, requires-body=true, timeout=60, tag=芒果TV去广告补充, enable=true
+
+[MitM]
+hostname=pcvideoyd.titan.mgtv.com, *.mgtv.com, mgesq.api.mgtv.com

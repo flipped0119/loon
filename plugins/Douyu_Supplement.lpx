@@ -1,0 +1,17 @@
+#!name=斗鱼去广告补充
+#!desc=配合常用的斗鱼去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/staticlive.douyucdn.cn\/.+\/getStartSend - reject
+^https?:\/\/staticlive.douyucdn.cn\/upload\/signs\/ - reject
+^https?:\/\/douyucdn.cn\/.+\/appapi\/getinfo - reject
+^https?:\/\/capi.douyucdn.cn\/lapi\/sign\/app(api)?\/getinfo\?client_sys=ios - reject
+^https?:\/\/capi\.douyucdn\.cn\/api\/ios_app\/check_update - reject-img
+^https?:\/\/capi\.douyucdn\.cn\/api\/v1\/getStartSend?client_sys=ios - reject-img
+
+[MitM]
+hostname=staticlive.douyucdn.cn, capi.douyucdn.cn

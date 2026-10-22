@@ -1,17 +1,35 @@
-#!name=微博增强补充
-#!desc=配合常用的「微博去广告」插件使用：只补它没处理的接口（视频流广告与频道、首页红点与消息数、实验开关、直播头像栏、游客模式），并提供设置页（Safari 打开 https://api.weibo.cn/__qx_weibo_settings__/）。Loon 同一请求只执行第一条命中的脚本，所以不重复处理去广告插件已覆盖的接口。
+#!name=微博去广告补充
+#!desc=配合常用的微博去广告插件使用，只补它们没处理的接口（20 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
-#!openUrl=https://apps.apple.com/app/id350962117
 #!tag=去广告
 #!loon_version=3.5.1(998)
 
+[Rewrite]
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get_coopen_ads&/ then response.json.jq(".data |= . + {\"ad_list\":[],\"pic_ad\":[],\"gdt_video_ad_ios\":[],\"display_ad\":0,\"ad_ios_id\":null,\"app_ad_ios_id\":null,\"reserve_ad_ios_id\":\"\",\"reserve_app_ad_ios_id\":\"\",\"ad_duration\":604800,\"ad_cd_interval\":604800}")
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=trends&/ then response.json.jq("if .data.order then .data.order = [\"search_topic\"] end")
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=search_topic&/ then response.json.jq("if .data.search_topic.cards[0].type == \"searchtop\" then del(.data.search_topic.cards[0]) end")
+response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=user_center&/ then response.json.jq("if .data.cards then .data.cards[].items |= map(select(.type != \"personal_vip\")) | .data.cards |= map(select((.items | length) > 0)) end")
+request if ${url} ~= /^https?:\/\/tqt\.weibo\.cn\/overall\/redirect\.php\?r=(?>tqt_sdkad|tqtad)/ then reject(404)
+request if ${url} ~= /^https?:\/\/tqt\.weibo\.cn\/.*advert/ then reject(404)
+request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/logservice\/service\?/ then reject(404)
+request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/!\/sug\/list\/finderchange\?/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/guest\/cardlist/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/!\/sug\/list\/finderchangemode/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/profile\/recommend_popusers/ then reject_dict(200)
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/client\/version/ then reject_dict(200)
+
+[Map Local]
+^https?:\/\/api\.weibo\.cn\/2\/ad\/weibointl\? header="content-type: application/json" data-type=text data="{}"
+^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get_searching_info& header="content-type: text/html" data-type=text data="{"retcode":0,"info":"","data":{"expiration_time":"86400","cards":[{"tip":"搜索微博","word":""}]}}"
+^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?ct=feed&a=search_topic& header="content-type: text/html" data-type=text data="{"retcode":0,"info":"","data":[],"ext":{}}"
+
 [Script]
-request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/(?:api\/config)?(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博设置页"
-request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/api\/(?:save|reset)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博设置保存", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/video\/(?:flow_stream|flow_stream_cache|home_channels|remind_info)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博视频流与频道", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/remind\/(?:hometab_dot|unread_count)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博红点与未读数", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/(?:client\/abserver_list|live\/media_homelist|guest\/container_timeline_hot|guest\/push_active)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博其他", requires_body=true
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/(?:api\/config)?(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充"
+request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/api\/(?:save|reset)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.weibo\.cn(?:\/2\/statuses\/container_timeline_hot|\/2\/guest\/container_timeline_hot|\/2\/statuses\/container_timeline_unread|\/2\/statuses\/container_timeline|\/2\/live\/media_homelist|\/2\/remind\/hometab_dot|\/2\/remind\/unread_count|\/2\/statuses\/container_detail|\/2\/statuses\/container_detail_comment|\/2\/comments\/build_comments|\/2\/search\/finder|\/2\/search\/container_timeline|\/2\/search\/container_discover|\/2\/!\/was\/finder\/searchbarchange|\/2\/cardlist|\/2\/searchall|\/2\/profile\/me|\/2\/video\/flow_stream|\/2\/video\/flow_stream_cache|\/2\/push\/daily|\/2\/push\/active|\/2\/guest\/push_active|\/2\/groups\/allgroups\/v2|\/2\/client\/abserver_list|\/2\/checkin\/show|\/2\/video\/remind_info|\/2\/video\/home_channels)(?=[?#]|$)/ then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/weibo.js") with tag="微博去广告补充", requires_body=true
+request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/Plugins/VVebo_Repair.js") with tag="微博去广告补充"
 
 [MitM]
-hostname=api.weibo.cn
+hostname=api.weibo.cn, weibointl.api.weibo.cn, *.weibo.cn, tqt.weibo.cn

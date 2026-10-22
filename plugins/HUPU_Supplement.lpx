@@ -1,0 +1,17 @@
+#!name=虎扑去广告补充
+#!desc=配合常用的虎扑去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/games\.mobileapi\.hupu\.com\/.+\/(search|interfaceAdMonitor|status|hupuBbsPm)\/(hotkey|init|hupuBbsPm)\./ then reject_img(200)
+request if ${url} ~= /^https?:\/\/games\.mobileapi\.hupu\.com\/interfaceAdMonitor/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/goblin\.hupu\.com\/.+\/interfaceAd\/getOther/ then reject(200)
+^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/(interfaceAdMonitor|interfaceAd)\/ - reject
+^https?:\/\/games\.mobileapi\.hupu\.com\/.+?\/status\/init - reject
+request if ${url} ~= /^https?:\/\/goblin\.hupu\.com\/.+\/interfaceAd\// then reject(404)
+
+[MitM]
+hostname=games.mobileapi.hupu.com, goblin.hupu.com

@@ -1,0 +1,19 @@
+#!name=前程无忧去广告补充
+#!desc=配合常用的前程无忧去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/recommend-infos reject
+^https?:\/\/appapi\.51job(app)?\.com\/api\/util\/get_version reject-dict
+^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/index\/last-version reject-dict
+^https?:\/\/cupid\.51job(app)?\.com\/open\/guide\/home-page-top reject
+^https?:\/\/cupid\.51job(app)?\.com\/open\/index\/notice-infos reject-dict
+
+[Script]
+http-response ^https?:\/\/cupid\.51job(app)?\.com\/open\/my-page\/ script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60, tag=前程无忧去广告补充, enable=true
+
+[MitM]
+hostname=cupid.51job, appapi.51job

@@ -1,0 +1,35 @@
+#!name=淘宝去广告补充
+#!desc=配合常用的淘宝去广告插件使用，只补它们没处理的接口（22 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+response if ${url} ~= /https:\/\/acs.m.taobao.com\/gw\/mtop.film.independentadvertiseapi.querypreloadadvertise/ then response.json.jq(".data.returnValue=[]")
+response if ${url} ~= /https:\/\/acs.m.taobao.com\/gw\/mtop.film.mtopsearchapi.getranklistbytypeforsearch/ then response.json.jq(".data.returnValue={}")
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.cbu\.app\.homepage\.startup/ then reject(200)
+request if ${url} ~= /^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.availablesplashstrategies/ then reject(200)
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.mos\.app\.homepage\.launch/ then reject(200)
+request if ${url} ~= /^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.fc\.resource\.tacdata\.get/ then reject(200)
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.aicloud\.splash/ then reject(200)
+response if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba.*mytab/ then response.json.jq(".data.model.children |= map(select(.name | contains(\"营销\") | not))")
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query.*etao_splash/ then reject(200)
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.tmall\.wireless - reject-200
+^https:\/\/(heic|gw)\.alicdn\.com\/imgextra\/i\d\/.+-tps-(702-758|1125-1602)\.(heic|jpg|png) - reject-200
+^https?:\/\/heic\.alicdn\.com\/tps\/i4\/.+?\.jpg_1200x1200q90\.jpg_\.heic$ - reject-200
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.exposure\.get\/ - reject
+^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.hippotown\.tabbar\.info reject
+^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.crm\.platform\.ma\.recommend reject-dict
+^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.mimir\.recommend\.after\.purchase\.activity reject-dict
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.guide\.guess\.what\.you\.like/ then reject(404)
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.tripbaymax\.busi\.buyer\.promote\.track/ then reject(404)
+request if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.traffic\.ai\.chat\.init/ then reject(404)
+request if ${url} ~= /^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.alibaba\.emas\.publish\.update\.get/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.ssif\.pattern\.home/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/fliggy.js") with tag="淘宝去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.traveldetail\.ultron\.detail\.firstscreen\.get/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/fliggy.js") with tag="淘宝去广告补充", requires_body=true
+
+[MitM]
+hostname=acs.m.taobao.com, guide-acs.m.taobao.com, heic.alicdn.com

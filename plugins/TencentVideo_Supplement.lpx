@@ -1,0 +1,18 @@
+#!name=腾讯视频去广告补充
+#!desc=配合常用的腾讯视频去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/t_splash_info\/ - reject
+^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/targeted_ads - reject-img
+^https?:\/\/y\.gtimg\.cn\/music\/.*?_Ad/\d+\.png - reject-img
+^https?:\/\/qzonestyle\.gtimg\.cn\/qzone\/biz\/gdt\/mob\/sdk\/ios\/v2\/ - reject-img
+^https?:\/\/discuz\.gtimg\.cn\/cloud\/scripts\/discuz_tips\.js - reject-img
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/\/upload\/kg_ad\/.+?\d{3,4}x\d{4}/ then reject(200)
+request if ${url} ~= /^https?:\/\/y\.gtimg\.cn\/music\/common\/upload\/kg_ad/ then reject_img(200)
+
+[MitM]
+hostname=y.gtimg.cn, qzonestyle.gtimg.cn, discuz.gtimg.cn

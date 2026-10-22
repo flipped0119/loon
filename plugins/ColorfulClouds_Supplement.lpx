@@ -1,18 +1,21 @@
 #!name=彩云天气去广告补充
-#!desc=配合常用的彩云天气去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的彩云天气去广告插件使用，只补它们没处理的接口（8 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!tag=去广告
 #!loon_version=3.5.1(998)
 
+[Rewrite]
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/config/ then response.json.jq("del(.search_suggestions)?")
+
 [Script]
-response if ${url} ~= /^https?:\/\/biz\.cyapi\.cn\/api\/v\d\/user_detail/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/biz\.cyapi\.cn\/v\d\/user/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/config\/cypage/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/feeds/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/banners/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/features/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
-response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/campaigns/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气补充", requires_body=true
+response if ${url} ~= /^https?:\/\/biz\.cyapi\.cn\/api\/v\d\/user_detail/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/biz\.cyapi\.cn\/v\d\/user/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/config\/cypage/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/feeds/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/banners/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/operation\/features/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/starplucker\.cyapi\.cn\/v\d\/campaigns/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caiyun_json.js") with tag="彩云天气去广告补充", requires_body=true
 
 [MitM]
-hostname=starplucker.cyapi.cn
+hostname=biz.cyapi.cn, starplucker.cyapi.cn

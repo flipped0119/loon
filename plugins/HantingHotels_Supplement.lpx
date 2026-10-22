@@ -1,0 +1,20 @@
+#!name=华住会去广告补充
+#!desc=配合常用的华住会去广告插件使用，只补它们没处理的接口（7 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/appapi\.huazhu\.com:\d{4}\/client\/app\/getAppStartPage\// then reject(200)
+^https:\/\/api-fouth-mem\.huazhu\.com\/api\/rights\/bannerList - reject-dict
+^https?:\/\/hweb-hotel\.huazhu\.com\/home\/queryRecommond reject-dict
+^https?:\/\/hweb-manager\.huazhu\.com\/bundle\/upgrade\/check reject-dict
+^https?:\/\/hweb-manager\.huazhu\.com\/hotels\/ad\/ reject-dict
+request if ${url} ~= /^https?:\/\/hweb-manager\.huazhu\.com\/start\/getAppStartPage/ then reject(404)
+
+[Script]
+request if ${url} ~= /^https?:\/\/hweb-personalcenter\.huazhu\.com\/login\/autoLogin$/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/huazhu.js") with tag="华住会去广告补充"
+
+[MitM]
+hostname=appapi.huazhu.com, api-fouth-mem.huazhu.com, hweb-hotel.huazhu.com, hweb-manager.huazhu.com, hweb-personalcenter.huazhu.com

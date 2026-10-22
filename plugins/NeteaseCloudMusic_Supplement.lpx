@@ -1,0 +1,52 @@
+#!name=网易云音乐去广告补充
+#!desc=配合常用的网易云音乐去广告插件使用，只补它们没处理的接口（39 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/content\/activity\/music\/jar\/template\/list/ then reject(200)
+request if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipmall\/couponcfg\/get/ then reject(200)
+request if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/comment\/feed\/inserted\/resources/ then reject(200)
+request if ${url} ~= /^https?:\/\/yanxuan\.nosdn\.127\.net\/.*\.mp4/ then reject(200)
+request if ${url} ~= /^https?:\/\/easyreadfs\.nosdn\.127\.net\/ad-material\// then reject(200)
+^https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/auth\/recycle\? - reject-dict
+^https?:\/\/p\.c\.music\.126.net\/.*?jpg$ - reject
+^https?:\/\/img1.126.net\/.+dpi=\w{7,8} - reject
+^https?:\/\/img1.126.net\/channel14\/ - reject
+^https?:\/\/p\d\.music\.126\.net\/\w+==\/\d+\.jpg$ - reject
+^https?:\/\/img1.126.net\/.+dpi=\w{7,8} reject
+^https?:\/\/statistic\.live\.126\.net\/statics\/report\/common\/form reject
+request if ${url} ~= /^https?:\/\/img1.126.net\/.+dpi=\w{7,8}/ then reject(404)
+
+[Script]
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/home\/framework\/tab/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/discovery\/resource\/show/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/page\/rcmd\/resource\/show/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/ios\/upgrade\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/rcmd\/keyword\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/list/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/chart\/detail/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/suggest\/keyword\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/search\/specialkeyword\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/position\/show\/resource/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/link\/scene\/show\/resource/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/vipnewcenter\/app\/resource\/newaccountpage/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/side-bar\/mini-program\/music-service\/account/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/deliver/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/delivery\/batch-deliver/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/yunbei\/account\/entrance\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/creator\/musician\/reminder\/message\/get/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface(\d)?\.music\.163\.com\/e?api\/batch/ then script("https://gist.githubusercontent.com/ddgksf2013/4f53b7c6083678df25fecc8ff68b52c4/raw/netease.adblock.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(batch|v\d\/resource\/comment\/floor\/get)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/link\/home\/framework\/tab/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/block\/page|link\/page\/rcmd\/(resource\/show|block\/resource\/multi\/refresh))/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/link\/page\/discovery\/resource\/show/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/song\/play\/more\/list\/v\d/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/link\/position\/show\/resource/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/user\/follow\/users\/mixed\/get/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js") with tag="网易云音乐去广告补充", requires_body=true
+
+[MitM]
+hostname=interface*.music.163.com, yanxuan.nosdn.127.net, easyreadfs.nosdn.127.net, img1.126.net, statistic.live.126.net

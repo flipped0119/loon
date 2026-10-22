@@ -1,0 +1,24 @@
+#!name=顺丰速运去广告补充
+#!desc=配合常用的顺丰速运去广告插件使用，只补它们没处理的接口（13 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/appVersion\/detectionUpgrade/ then reject(200)
+request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen/ then reject(200)
+^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list - reject-200
+^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-video\/video\/app\/video\/labelClusterList reject-dict
+^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/bms\/queryRecommend reject-dict
+^https?:\/\/mcs-mimp-web\.sf-express\.com\/mcs-mimp\/integralPlanet\/getCxAdvertiseList reject-dict
+^https?:\/\/ucmp-static\.sf-express\.com\/proxy\/wxbase\/wxTicket\/wxLiveStreamInfo\?pageNo reject-dict
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query reject-dict
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberManage\/memberEquity\/queryRecommendEquity reject-dict
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberActLengthy\/fullGiveActivityService\/fullGiveInfo reject-dict
+request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/module-config\/query/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/index\/home\/get(?>Popup|Layout)/ then reject(404)
+request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/account\/coupon\/getUserCouponCnt/ then reject(404)
+
+[MitM]
+hostname=ccsp-egmas.sf-express.com, shopic.sf-express.com, ucmp.sf-express.com, mcs-mimp-web.sf-express.com, ucmp-static.sf-express.com

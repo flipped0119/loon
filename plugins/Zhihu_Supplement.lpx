@@ -1,13 +1,11 @@
 #!name=知乎去广告补充
-#!desc=配合常用的知乎去广告插件使用，只补它们没处理的接口（36 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的知乎去广告插件使用，只补它们没处理的接口（75 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!tag=去广告
 #!loon_version=3.5.1(998)
 
 [Rewrite]
-request if ${url} ~= /^https?:\/\/118\.89\.204\.198/ then reject(200)
-request if ${url} ~= /^https?:\/\/103\.41\.167\.237/ then reject(200)
 request if ${url} ~= /^https?:\/\/2402:4e00:1200:ed00:0:9089:6dac:96b6/ then reject(200)
 request if ${url} ~= /^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config/ then reject(200)
 request if ${url} ~= /^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+\/card\?/ then reject_dict(200)
@@ -29,21 +27,62 @@ request if ${url} ~= /^https?:\/\/www\.zhihu\.com\/api\/v4\/search\/related_quer
 request if ${url} ~= /^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/v2\/resolv/ then reject(200)
 request if ${url} ~= /^https?:\/\/api\.zhihu\.com\/root\/window/ then reject_dict(200)
 request if ${url} ~= /^https?:\/\/www\.zhihu\.com\/appview\/v\d\/zhmore/ then reject(200)
-response if ${url} ~= /^https?:\/\/.*zhihu.com\/(answers|articles)\/v\d/ then response.json.jq(".third_business |= del(.related_queries, .ring)")
+^http:\/\/.+/\?tk=9901afb195dcf9a34db6088a4a221dba38b3d980e4db86009f8a08be4d4099ee323f6e7f03b881db21133b1bf2ae5bc5 - reject
+^http:\/\/.+\/vmind\.qqvideo\.tc\.qq\.com\/.+\.mp4 - reject
+^http:\/\/.+\/vmind\.qqvideo\.tc\.qq\.com\/.+mp4 - reject-dict
+^https?:\/\/static\.zhihu\.com\/[^\/]+\/(main|column)\.signflow\.[^.]+.js - reject
+^https?:\/\/www\.zhihu\.com\/api\/v4\/community-ad\/ - reject
+^https?:\/\/www\.zhihu\.com\/terms\/privacy\/confirm - reject-img
+^https?:\/\/api\.zhihu\.com\/fringe\/ad - reject
+^https?:\/\/api\.zhihu\.com\/ad - reject
+^https?:\/\/api\.zhihu\.com\/appview\/api\/v\d\/answers\/\d+\/recommendations - reject
+^https?:\/\/api\.zhihu\.com\/\w+\/\d+\/comments\/featured-comment-ad - reject
+^https?+:\/\/api\.zhihu\.com\/(?>launch|real_time) - reject-200
+^https?+:\/\/www\.zhihu\.com\/api\/v4\/cmmunity-ad - reject-200
+^https?:\/\/(api|www)\.zhihu\.com\/.*?(featured-comment-ad|recommendations|community-ad) - reject-img
+^https?:\/\/api\.zhihu\.com\/market\/popover - reject-img
+^https:\/\/api\.zhihu\.com\/prague\/related_suggestion_native\/feed\? reject-dict
+^https:\/\/api\.zhihu\.com\/v5\.1\/topics\/answer\/\d+\/relation reject-dict
+^https:\/\/appcloud2\.zhihu\.com\/v3\/resource\?group_name=mp reject-dict
+^https:\/\/link\.zhihu\.com\/\?target=(?:https?)?(?:%3A|:)?(?:\/\/|%2F%2F)?(.*) 302 http://$1
+^https:\/\/api\.zhihu\.com\/distribute\/rhea\/qa_ad_card\/h5\/recommendation\? reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v4\/hot_recommendation reject
+^https:\/\/www\.zhihu\.com\/api\/v4\/mcn\/v2\/linkcards\? reject
+^https:\/\/www\.zhihu\.com\/api\/v4/(?:answers|questions)\/\d+/related-readings reject
+^https:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner reject
+^https:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation reject
+^https:\/\/zhstatic\.zhihu\.com\/brand-ad reject
+request if ${url} ~= /^https?:\/\/api\.zhihu\.com\/v\d\.\d\/topics\/answer\/\d+\/relation/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/www\.zhihu\.com\/commercial_api\/banners_v\d\/mobile_banner/ then reject(404)
 
 [Script]
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/tabs/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/next-data/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+\/feeds/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\// then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/modules/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/user-credit\/basis/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message)/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/moments_v3/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
-response if ${url} ~= /https:\/\/api.zhihu.com\/search\/hot_search/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/tabs/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/next-data/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+\/feeds/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\// then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/modules/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/user-credit\/basis/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message)/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/moments_v3/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+response if ${url} ~= /https:\/\/api.zhihu.com\/search\/hot_search/ then script("https://ddgksf2013.top/scripts/zhihu.ads.js") with tag="知乎去广告补充", requires_body=true
+http-response ^https:\/\/(appcloud2\.zhihu\.com\/v3\/config$|www\.zhihu\.com\/api\/v4\/(answers\/\d+\/recommendations|articles\/\d+\/recommendation)|api\.zhihu\.com\/(topstory\/recommend|commercial_api\/(real_time_launch_v2|app_float_layer$)|questions\/\d+\/feeds\?|v4\/questions\/\d+\/answers\?)) script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/zhihu.js, requires-body=true, timeout=10, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/people\/ requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/feed-root\/block requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\? requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/settings\/blocked_users requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+ requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/www\.zhihu\.com\/api\/v4\/comment_v5\/answers\/\d+\/abstract_comment\? requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/(comment_v5\/)?(answers|comments?|articles|pins)\/\d+\/(root_|child_)?comments? requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/next\? requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists?(\?|\/) requires-body=1,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js, tag=知乎去广告补充
+http-response ^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\? script-path = https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/zhihu/zhihu.js, requires-body = true, tag=知乎去广告补充, enable=true
+http-response ^https:\/\/api\.zhihu\.com\/root\/tab script-path = https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/zhihu/zhihu.js, requires-body = true, tag=知乎去广告补充, enable=true
+http-response ^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render) script-path = https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/zhihu/zhihu.js, requires-body = true, tag=知乎去广告补充, enable=true
+http-response ^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\? script-path = https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/zhihu/zhihu.js, requires-body = true, tag=知乎去广告补充, enable=true
+response if ${url} ~= /^https?:\/\/api\.zhihu\.com\/(moments_v\d|topstory\/recommend(_v\d)?)/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zhihu.js") with tag="知乎去广告补充", requires_body=true
 
 [MitM]
-hostname=118.89.204.198, 103.41.167.237, 2402:4e00:1200:ed00:0:9089:6dac:96b6, api.zhihu.com, www.zhihu.com, page-info.zhihu.com, zhuanlan.zhihu.com, appcloud2.zhihu.com, m-cloud.zhihu.com
+hostname=api.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, static.zhihu.com, m-cloud.zhihu.com, link.zhihu.com, zhuanlan.zhihu.com, zhstatic.zhihu.com

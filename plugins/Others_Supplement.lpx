@@ -1,0 +1,209 @@
+#!name=其他 App去广告补充
+#!desc=配合各 App去广告插件使用，只补它们没处理的接口（196 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.alimama\.abyss\.unionpage\.get/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_.-]+\.taobao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.consultmerge/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/.*?\/v\d\/(version$|notice\?|top_notice\?|advert\?position=[^2]+)/ then reject(200)
+request if ${url} ~= /^https?:\/\/appwk\.baidu\.com\/xpage\/interface\/wknaad/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*flyert.*\/api\/mobile\/index\.php\?module=advis/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*flyert.*\/source\/plugin\/mobile\/mobile\.php\?module=advis/ then reject(200)
+request if ${url} ~= /^https?:\/\/jdread-api\.jd\.com\/jdread\/api\/channel\/module\/opens/ then reject(200)
+request if ${url} ~= /^https?:\/\/jdread-api\.jd\.com\/jdread\/api\/popup/ then reject(200)
+request if ${url} ~= /^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture/ then reject(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/queryAppHomePageMarketingRecommendRuleConfigInfo/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.smart\.jd\.com\/c\/service\/getLoadingLinks/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action/ then reject(200)
+request if ${url} ~= /^https?:\/\/(commontgw|comapi)\.reader\.qq\.com\/(common\/adV|com-ad\/config)/ then reject(200)
+request if ${url} ~= /^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/\w+\/resolv/ then reject(200)
+request if ${url} ~= /^https:\/\/api\.gameplus\.qq\.com\/community\.OnloadSrv\/GetPreloadScreenInfo/ then reject(200)
+request if ${url} ~= /^https?:\/\/r\.inews\.qq\.com\/(adsBlacklist|getFullScreenPic|getQQNewsRemoteConfig)/ then reject(200)
+request if ${url} ~= /^https?:\/\/r\.inews\.qq\.com\/(getBannerAds|getNewsRemoteConfig|getSplash|searchHotCatList|upLoadLoc)/ then reject(200)
+request if ${url} ~= /^https?:\/\/iphone\.ac\.qq\.com\/.*\/Support\/(getSystemConf|bootScreen)/ then reject(200)
+request if ${url} ~= /^https?:\/\/appconf\.mail\.163\.com\/mmad\/get\.do/ then reject(200)
+request if ${url} ~= /^https?:\/\/m\.you\.163\.com\/activity\/popWindow/ then reject(200)
+request if ${url} ~= /^https?:\/\/bgw\.xinyue\.qq\.com\/xyapi\.PageService\/GetIndexPopFlash/ then reject(200)
+request if ${url} ~= /^https?:\/\/djcapp\.game\.qq\.com\/daoju\/igw\/main\/\?_service=welink\.ad\.list/ then reject(200)
+request if ${url} ~= /^https?:\/\/mlol\.qt\.qq\.com\/go\/recommend\/(?!v)/ then reject(200)
+^http:\/\/msga/.cupid/.iqiyi/.com\/scp2\.gif - reject
+^https:\/\/b2baifanfan\.baidu\.com\/crm\/web\/b2b\/im\/common\/getConfigByDeviceNum - reject-200
+^https?:\/\/fcvbjbcebos.baidu.com\/.+.mp4 - reject
+^https?:\/\/cover.baidu.com\/cover\/page\/dspSwitchAds\/ - reject
+^https?:\/\/baichuan.baidu.com\/rs\/adpmobile\/launch - reject
+^https?:\/\/api\d\.tuisong\.baidu\.com - reject-img
+^https?:\/\/[\s\S]*\.baidu\.com/.*?ad[xs]\.php - reject-img
+^https?:\/\/update\.pan\.baidu\.com\/statistics - reject
+^https?:\/\/sa\d\.tuisong\.baidu\.com - reject-img
+^http:\/\/r6\.mo\.baidu\.com\/res\/file/advertisement\/files\/.+\.jpg - reject
+^http:\/\/res\.mi\.baidu\.com\/imeres\/ime-res\/advertisement\/files\/.+\.jpg - reject
+^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/forum\/getAdInfo - reject
+^https?:\/\/c\.tieba\.baidu\.com\/c\/s\/splashSchedule - reject
+^https?:\/\/c\.tieba\.baidu\.com\/c\/p\/img\?src= - reject-img
+^https?:\/\/c\.tieba\.baidu\.com\/c\/s\/logtogether\?cmd= - reject-img
+^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/base\/(new)?na\/m\/adInfo - reject
+^https?:\/\/bdsp-x\.jd\.com\/adx\/ - reject
+^https?:\/\/appconf\.mail\.163\.com\/mmad\/ - reject
+^https?:\/\/.+?\/cdn-adn\/ - reject-200
+^https?:\/\/m\.qianbao\.qq\.com\/pages\/walletHome\?invisible - reject
+^https?:\/\/ssl\.kohsocialapp\.qq\.com:\d+\/game\/buttons - reject
+^https?:\/\/qt\.qq\.com\/lua\/mengyou\/get_splash_screen_info - reject
+^https?:\/\/4gimg\.map\.qq\.com\/mwaSplash\/ - reject-200
+^https?:\/\/\w+\.beacon\.qq\.com - reject
+^https?:\/\/imgcache\.qq\.com\/qqlive\/ - reject-img
+^https?:\/\/3gimg\.qq\.com\/tencentMapTouch\/app\/activity\/ - reject-200
+^https?:\/\/3gimg\.qq\.com\/tencentMapTouch\/splash\/ - reject-200
+^http:\/\/.+/\?tk=9901afb195dcf9a34db6088a4a221dba38b3d980e4db86009f8a08be4d4099ee323f6e7f03b881db21133b1bf2ae5bc5 - reject
+^http:\/\/video\.dispatch\.tc\.qq\.com\/.+\.mp4 - reject
+^http:\/\/.+\/vmind\.qqvideo\.tc\.qq\.com\/.+\.mp4 - reject
+^https?:\/\/.+?\/omts.tc.qq.com\/ - reject
+^https?:\/\/.+?\/variety.tc.qq.com\/ - reject
+^https?:\/\/.+?\.tc\.qq\.com\/.+?_p20\d_ - reject
+^https?:\/\/[\s\S]*\/.+?\.tc\.qq\.com/.*?p201.1\.mp4 - reject-img
+^https?:\/\/video\.dispatch\.tc\.qq\.com\/\w+\.p20\d\.1\.mp4 - reject
+^https?:\/\/gw\.alicdn\.com\/imgextra\/i\d\/.+1125-1602\.jpg - reject-200
+^https?:\/\/p\.du\.163\.com\/ad\/ - reject-200
+^https?:\/\/.+?\/eapi\/(?>ad|log)\/ - reject-200
+http:\/\/analytics\.163\.com\/ntes - reject
+^https?:\/\/ups\.youku\.com\/.*?needad=1& - reject
+^https?:\/\/r\.l\.youku\.com\/rec_at_click - reject-img
+^https?:\/\/m\.youku\.com\/video\/libs\/iwt\.js - reject-img
+^https?:\/\/api\.mobile\.youku\.com\/layout\/search\/hot\/word - reject-img
+^https?:\/\/ad\.api\.3g\.youku\.com - reject-img
+^https?:\/\/.+?\.atm\.youku\.com - reject
+^https?:\/\/[\s\S]*\/youku\/.*?\.mp4 - reject-img
+^https?:\/\/.+/img\/ad\.union\.api\/ - reject-200
+^https?:\/\/szextshort\.weixin\.qq\.com\/cgi-bin\/mmoc-bin\/ad\/ - reject-img
+^https?:\/\/.+?\.tc\.qq\.com\/.+?p20\d\.1\.mp4\? - reject
+^https?://www\.taobao\.com\/help\/getip\.php - reject
+^https?://.+audid-api\.taobao.com - reject
+^https?:\/\/r6\.mo\.baidu\.com\/res\/file/advertisement\/files\/.+\.jpg reject
+^https?:\/\/res\.mi\.baidu\.com\/imeres\/ime-res\/advertisement\/files\/.+\.jpg reject
+^https?:\/\/(gw|img)\.alicdn\.com\/imgextra\/.+\/[\w!]+\d+-\d+-.+-\b([8-9]\d{2,}|[1-9]\d{3,})\b-\b([5-9]\d{2,}|[1-9]\d{3,})\b reject-dict
+^https?:\/\/erebor\.douban\.com\/count\/\?ad= reject
+^https:\/\/music\.y\.qq\.com\/maproxy\/getPbCompressAd reject
+^https?:\/\/h5api\.sginput\.qq\.com\/v1\/gcenter\/ios\/homepage reject-dict
+^https:\/\/app-conf\.ds\.163\.com\/v\d\/app\/base\/conf\/static\/start-config\? response-body-json-del result.updateConfig[2].itemList[94].itemList[2]
+^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.(pisp\.scripts\.get|xspace\.play\.position\.preload\.query|xspace\.poplayer\.position\.query) reject-dict
+request if ${url} ~= /^https?:\/\/mdn\.alicdn\.com\/imgextra\/i1\/.*-tps-180-180\.gif$/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/ossweb-img\.qq\.com\/upload\/adw\/image\/[0-9]{3}\/202[0-9]{5}\/[a-z0-9]{32}\.(?>jpg|jpeg)/ then reject(200)
+request if ${url} ~= /^https?:\/\/apd-vlive\.apdcdn\.tc\.qq\.com\/vmind\.qqvideo\.tc\.qq\.com\/\w+/ then reject(404)
+request if ${url} ~= /^https?:\/\/g\.alicdn\.com\/TBTakeout\/et-store\/(\d+.)*\/weex\/store-brand-popup/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/bannerPicAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/getPopConfigAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/getHotTopicAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/getNewsReportAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/getExpertVideoAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/apps\/getHotRecommendV\dAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/m\/getLoginWordsAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/getAppPopSettingAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/app\/commonstatusAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/apps\/getHomeMonitorDataAjax/ then reject(404)
+request if ${url} ~= /^https?:\/\/aiqicha\.baidu\.com\/apps\/searchRecommendAjax/ then reject(404)
+response if ${url} ~= /^https?:\/\/outfliggys\.m\.taobao\.com\/app\/trip\/rx-travel-detail\/pages\/index/ then response.body.replace(/"showAiAssistant":true,/, "\"showAiAssistant\":false,")
+request if ${url} ~= /^https?:\/\/bk\.bingo\.qq\.com\/bk\/crx\/data\/videoAd/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/api\.map\.baidu\.com\/\?qt=verify/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/t\d{2}\.baidu\.com/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/(gw|heic)\.alicdn\.com\/imgextra\/\w{2}\/\w+!+(?!600000000(5412|6148|4021|5802))\d*-\d-tps-(?!1035)\d{3,4}-(?!570)\d{3,4}\.(?>jpg|png)_(1\d{3}|9\d{2})x(1\d{3}|9\d{2})q\d0\.jpg_\.(?>heic|webp)/ then reject(404)
+request if ${url} ~= /^https?:\/\/g\.alicdn\.com\/(?>alilog|trace)/ then reject(200)
+request if ${url} ~= /^https?:\/\/yixiu-abtest\.alicdn\.com\/ut-abtest\/config/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/[\d\.]+:\d{5}\/\?cmd=indexes/ then reject(404)
+request if ${url} ~= /^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/app\/(new)?na\/m\/getLaunchImageList/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/storage\.jd\.com\/ti-pythontask\/JD\/jdt_/ then reject(404)
+request if ${url} ~= /^https?:\/\/storage\.jd\.com\/mpaas2-public\/product\/\d+\// then reject(404)
+request if ${url} ~= /^https?:\/\/webcdn\.m\.qq\.com\/qiantu\/upload\/202[0-9]{5}\/.*.(?>jpg|png)/ then reject(200)
+request if ${url} ~= /^https?:\/\/g\.alicdn\.com\/IdleFish-F2e\/idlefish-workers\/[0-9.]+\/smartLoader/ then reject(404)
+request if ${url} ~= /^https?:\/\/newclient\.map\.baidu\.com\/feed\/govui\/rich_content/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/payapp\.weixin\.qq\.com\/mchopenapp\/goldplan\/adpage/ then reject(404)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/BeaconFireApi\/queryMarketingRecommendRuleConfigInfo/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/home\/banner/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/order\/getCarbonIntegral/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/csat\/getNPSQuestionnaire/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/search\/getQuestionnaireByOrderInfo/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/index\/queryTabBubble/ then reject(404)
+request if ${url} ~= /^https?:\/\/lop-proxy\.jd\.com\/smartmp\/querySmartDecision/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/ad\.mcloud\.139\.com\/advertapi/ then reject(200)
+^https?:\/\/middle\.yun\.139\.com\/openapi\/cardConfig\/queryCardInfoV3 - reject-200
+^https?:\/\/mrp\.mcloud\.139\.com\/mc\/mc-client-service\/openapi\/letter\/query reject-dict
+request if ${url} ~= /^https?:\/\/mime\.baidu\.com\/v\d\/IosStart\/getStartInfo/ then reject(200)
+request if ${url} ~= /^https?:\/\/mime\.baidu\.com\/v\d\/activity\/advertisement/ then reject(200)
+request if ${url} ~= /^https:\/\/mbd\.baidu\.com\/newspage\/api\/getmobads\?page\=landingshare/ then reject(200)
+^https:\/\/mime\.baidu\.com\/v5\/hotpatch\/check\?hotpatch - reject
+request if ${url} ~= /^https?:\/\/api\.douban\.com\/b.*\/common_ads\?.*/ then reject(200)
+^https?:\/\/api\.douban\.com\/v\d\/app_ads\/ reject-dict
+^https?:\/\/frodo\.douban\.com\/api\/v2\/movie\/banner reject
+request if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/openUpgrade/ then reject(404)
+request if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/api\/appPublishUpgrade/ then reject(404)
+request if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/\?loginType=11/ then reject_dict(200)
+response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/user\/profile/ then response.json.jq(".data.level = 20 | .data.fans = 99999 | .data.experience = 94575543 | .data.next_level_experience = 200000000")
+response if ${url} ~= /^https:\/\/api\.coolapk\.com\/v6\/account\/loadConfig\?key=my_page_card_config/ then response.json.jq(".data |= map(select(.entityType != \"textLink\" and (.entityId != 1001 and .entityId != 1003 and .entityId != 1004 and .entityId != 1005)) | if .entities then .entities |= map(select(.entityType != \"textLink\")) else . end)")
+request if ${url} ~= /^https?:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/(resource|banner)/ then reject(200)
+request if ${url} ~= /^http:\/\/ads.?s?ervice(retry)?\.(kugou|kglink).(com|cn)\/v\d\// then reject(200)
+response if ${url} ~= /^https?:\/\/apapia-sqk\.manmanbuy\.com\/index_json\.ashx/ then response.body.replace(/splashAD/, "removed")
+request if ${url} ~= /^https?:\/\/open\.taou\.com\/maimai\/launch_ad/ then reject(200)
+request if ${url} ~= /^https?:\/\/api\.taou\.com\/sdk\/global\/splash_ad/ then reject(200)
+request if ${url} ~= /^https?:\/\/track\.mm\.taou\.com\/v\d\/track/ then reject(200)
+request if ${url} ~= /^https?:\/\/testflight\.apple\.com\/v2\/accounts\/.*\/apps\/\d*\/builds\/\d*\/install/ then request.body.replace(/storefrontId" : ".*"/, "storefrontId\" : \"143441-1,29\"")
+response if ${url} ~= /^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt/ then response.json.jq(".receipt.in_app[].expires_date_ms = \"4092599349000\" | .latest_receipt_info[].expires_date_ms = \"4092599349000\" | .pending_renewal_info[].auto_renew_status = \"1\"")
+request if ${url} ~= /^https?:\/\/god\.gameyw\.netease\.com\/v\d\/ad\/serving\/app-start/ then reject(200)
+^https:\/\/god\.gameyw\.netease\.com\/v\d\/ad reject
+^https:\/\/god\.gameyw\.netease\.com\/v\d\/app\/static\/conf\/getByModuleNameList$ reject-dict
+request if ${url} ~= /https:\/\/support.you.163.com\/appversync\/check.do/ then reject(200)
+request if ${url} ~= /^https?:\/\/a\.qiumibao\.com\/activities\/config\.php$/ then reject(200)
+request if ${url} ~= /^https?:\/\/[a-zA-Z0-9_-]+\.weathercn\.com\/(.*bypage|appindexicon)/ then reject(200)
+^https?:\/\/www.baidu.com\/?action=static&ms=1&version=css_page_2@0.*? - reject
+^https?:\/\/capis(-\d)?\.didapinche\.com\/ad\/ - reject
+^https?:\/\/capis(-?\w*)?\.didapinche\.com\/publish\/api\/upgrade - reject-dict
+^https?:\/\/www\.didapinche\.com\/app\/adstat\/ - reject-200
+^https?:\/\/.+\.googleapis.com/.+ad_break - reject-img
+^https?:\/\/.+\.googleapis.com/.+log_event - reject-img
+^https?:\/\/.+\.googleapis.com/adsmeasurement - reject-img
+^https:\/\/api\.xueqiu\.com\/brand\/search\/v1\.json\? - reject
+request if ${url} ~= /^https?:\/\/(api|promo)\.xueqiu\.com\/promotion\/(?>display_cache|display_ad|feed_display|search_ad)/ then reject(404)
+^https?:\/\/images\.client\.vip\.xunlei\.com\/.+?\/advert\/ - reject-200
+^https?:\/\/vali\.cp31\.ott\.cibntv\.net\/youku - reject
+^https?:\/\/.+?\.ott\.cibntv\.net\/[\w\/-]+.mp4\?sid= - reject
+^https?:\/\/app\.zhuanzhuan\.com\/zz\/transfer\/userred\?scene=homePage - reject-200
+response if ${url} ~= /^https?:\/\/app\.zhuanzhuan\.com\/zz\/transfer\/getpersonalcenter/ then response.body.replace(/pendantInfo/, "random_body")
+^https?:\/\/gw\.api\.ddxq\.mobi\/vip-app-service\/vip\/my\/page\/advertising reject
+^https:\/\/maicai\.api\.ddxq\.mobi\/homeApi\/queryMyPagePopup reject-dict
+^https?:\/\/maicai\.api\.ddxq\.mobi\/cart\/vipGuide reject-dict
+^https:\/\/oss\.umetrip\.com\/fs\/advert\/polite reject
+^https?:\/\/api\.xiaoyuzhoufm\.com\/v1\/(related-episode|operation-resource)\/list response-body-json-jq '.data = []'
+request if ${url} ~= /^https?:\/\/api\.xiaoyuzhoufm\.com\/v\d\/membership\/platform/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/dl\.wechat\.com\/checkresupdate/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^http:\/\/amdc\.m\.taobao\.com/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amdc.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/api\/v\d\/movie\/index_recommend/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/555Ad.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads/ then script("https://raw.githubusercontent.com/app2smile/rules/master/js/baidumap.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync)/ then script("https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/WeRead/weread.js") with tag="其他 App去广告补充", requires_body=true
+http-response ^https:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/(channel_feed|event_detail)|news_feed\/hot_module_list)) script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js, requires-body=true, timeout=10, tag=其他 App去广告补充
+http-request ^https?://union.click.jd.com/jda? script-path=https://raw.githubusercontent.com/xream/scripts/main/surge/modules/replace-header/index.js, timeout=60, tag=其他 App去广告补充, argument="^(.+?\s).+?(\s[\s\S]+?Host:).+?(\r\n)->$1/jda?adblock=$2union.click.jd.com$3"
+http-request ^https?://union.click.jd.com/sem.php? script-path=https://raw.githubusercontent.com/xream/scripts/main/surge/modules/replace-header/index.js, timeout=60, tag=其他 App去广告补充, argument="^(.+?\s).+?(\s[\s\S]+?Host:).+?(\r\n)->$1/sem.php?adblock=$2union.click.jd.com$3"
+http-response ^https?:\/\/g\.alicdn\.com\/.*o2o-ad script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/alicdn.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+http-response ^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.columbus\.(gateway\.new\.execute|home\.feed|home\.query|uc\.query|ycp\.query) script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+http-response ^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.haidai\.lantern\.appconfig\.get script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+http-response ^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.huluwa\.dispatcher\.youthmode\.config2 script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+http-response ^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.soku\.yksearch script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+response if ${url} ~= /^https?:\/\/sec\.sginput\.qq\.com\/q/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sougou.js") with tag="其他 App去广告补充"
+response if ${url} ~= /^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/(excellent\/personalized|frs\/(?>generalTabList|page|threadlist)|pb\/(pic)?page)\?cmd/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tiebaProto.js") with tag="其他 App去广告补充", requires_body=true
+request if ${url} ~= /^https?:\/\/(c\.)?tieba(c)?\.baidu\.com\/c\/u\/follow\/getFoldedMessageUserInfo/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/tieba.js") with tag="其他 App去广告补充"
+request if ${url} ~= /^https?:\/\/vip\.video\.qq\.com\/rpc\/trpc\.new_task_system\.task_system\.TaskSystem\/ReadTaskList\?/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/txtv.js") with tag="其他 App去广告补充"
+request if ${url} ~= /^https?:\/\/pbaccess\.video\.qq\.com\/trpc\.videosearch\.hot_rank\.HotRankServantHttp\/HotRankHttp/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/CheckIn/txtv.js") with tag="其他 App去广告补充"
+response if ${url} ~= /^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_\/-]+\.html/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/123pan.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ithome.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/startup.js") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList)/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/coolapk.js") with tag="其他 App去广告补充", requires_body=true
+http-request ^https:\/\/www\.coolapk\.com\/link.* script-path=https://raw.githubusercontent.com/VenenoSix24/Ivy-Script/refs/heads/main/Loon/script/Coolapk_Redirect.js, requires-body=false, timeout=10, tag=其他 App去广告补充, enable=true
+http-request ^https?:\/\/testflight\.apple\.com\/v\d\/accounts\/.+?\/install$ script-path=https://gist.githubusercontent.com/NobyDa/9be418b93afc5e9c8a8f4d28ae403cf2/raw/TF_Download.js, requires-body=true, timeout=60 ,tag=其他 App去广告补充
+response if ${url} ~= /^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(?:navigation\/resolve_url|browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch)(?:\?.*)?$/ then script("https://raw.githubusercontent.com/gholts/surge/main/scripts/youtube/response.js", "{") with tag="其他 App去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/app\.zhuanzhuan\.com\/zz\/v\d\/zzlogic\/mywxcontinenthomepage/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zhuanzhuan.js") with tag="其他 App去广告补充", requires_body=true
+http-response ^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$ script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js, requires-body=true, timeout=60, tag=其他 App去广告补充, enable=true
+
+[MitM]
+hostname=acs4miniapp-inner.m.taobao.com, afd.baidu.com, api.gameplus.qq.com, api.smart.jd.com, app.mval.qq.com, appconf.mail.163.com, appwk.baidu.com, bdsp-x.jd.com, bgw.xinyue.qq.com, comapi.reader.qq.com, commontgw.reader.qq.com, djcapp.game.qq.com, dsp-x.jd.com, iphone.ac.qq.com, iyes.youku.com, jdread-api.jd.com, lop-proxy.jd.com, m.you.163.com, mi.gdt.qq.com, mobads.baidu.com, ms.jr.jd.com, newclient.map.baidu.com, otheve.beacon.qq.com, r.inews.qq.com, us.l.qq.com, wxa.wxs.qq.com, mlol.qt.qq.com, i.weread.qq.com, news.ssp.qq.com, b2baifanfan.baidu.com, *.tieba.baidu.com, sofire.baidu.com, zhidao.baidu.com, update.pan.baidu.com, 4gimg.map.qq.com, baidu.com, btrace.qq.com, dns.jd.com, img.alicdn.com, m.jd.com, m.qianbao.qq.com, news.l.qq.com, ossgw.alicdn.com, ossweb-img.qq.com, p.du.163.com, ssl.kohsocialapp.qq.com, static.gameplus.qq.com, tc.qq.com, webcdn.m.qq.com, qt.qq.com, imgcache.qq.com, 3gimg.qq.com, video.dispatch.tc.qq.com, gw.alicdn.com, ups.youku.com, r.l.youku.com, m.youku.com, api.mobile.youku.com, ad.api.3g.youku.com, szextshort.weixin.qq.com, *.tc.qq.com, omts.tc.qq.com, variety.tc.qq.com, vmind.qqvideo.tc.qq.com, www.taobao.com, r6.mo.baidu.com, res.mi.baidu.com, erebor.douban.com, g.alicdn.com, music.y.qq.com, h5api.sginput.qq.com, app-conf.ds.163.com, acs.youku.com, mdn.alicdn.com, apd-vlive.apdcdn.tc.qq.com, sec.sginput.qq.com, aiqicha.baidu.com, outfliggys.m.taobao.com, bk.bingo.qq.com, api.map.baidu.com, yixiu-abtest.alicdn.com, storage.jd.com, *tieba*.baidu.com, payapp.weixin.qq.com, c.tieba.baidu.com, vip.video.qq.com, pbaccess.video.qq.com, ad.mcloud.139.com, middle.yun.139.com, mrp.mcloud.139.com, www.123pan.com, mime.baidu.com, mbd.baidu.com, api.douban.com, frodo.douban.com, napi.ithome.com, api.m.jd.com, api.coolapk.com, www.coolapk.com, api.kmovie.gifshow.com, apapia-sqk.manmanbuy.com, open.taou.com, api.taou.com, track.mm.taou.com, testflight.apple.com, buy.itunes.apple.com, god.gameyw.netease.com, support.you.163.com, a.qiumibao.com, *.weathercn.com, www.baidu.com, capis*.didapinche.com, capis.didapinche.com, www.didapinche.com, youtubei.googleapis.com, api.xueqiu.com, promo.xueqiu.com, images.client.vip.xunlei.com, vali.cp31.ott.cibntv.net, app.zhuanzhuan.com, gw.api.ddxq.mobi, maicai.api.ddxq.mobi, oss.umetrip.com, home.umetrip.com, api.xiaoyuzhoufm.com, dl.wechat.com

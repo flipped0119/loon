@@ -1,0 +1,36 @@
+#!name=小象超市去广告补充
+#!desc=配合常用的小象超市去广告插件使用，只补它们没处理的接口（23 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/peisongapi\.meituan\.com\/client\/getInitiateImage/ then reject(200)
+request if ${url} ~= /^https?:\/\/.*\.meituan\.com\/api\/v\d\/(openscreen\?ad|appstatus\?ad|loadInfo\?|startpicture)/ then reject(200)
+^https:\/\/richmanrules\.ksedt\.com\/intellectWaterfall(Bidding)?\/find - reject
+^https?:\/\/www\.meituan\.com\/api\/v\d\/appstatus\? - reject
+^https?:\/\/apimobile\.meituan\.com\/appupdate\/mach\/checkUpdate? - reject
+^https?:\/\/p\.meituan\.com\/api\/privacy\/config - reject
+^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement - reject-dict
+^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList reject-dict
+request if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/appupdate/ then reject(404)
+request if ${url} ~= /^https?:\/\/apimobile\.meituan\.com\/group\/v\d\/recommend\/unity\/recommends/ then reject(404)
+request if ${url} ~= /^https?:\/\/portal-portm\.meituan\.com\/horn_ios/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/sqt\.meituan\.com\/s\/gateway\/mweb\/api\/marketingResource\/show/ then reject(404)
+request if ${url} ~= /^https?:\/\/gouche\.ksedt\.com\/config\/popup\// then reject_dict(200)
+request if ${url} ~= /^https?:\/\/op\.ksedt\.com\/jxedtLive\/liveIntroduceResource/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/selectpopuptoshow/ then reject_dict(200)
+response if ${url} ~= /^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryPortalInfo/ then response.json.jq(".data.modules |= map(select(.data.advType != true and .name != \"float-window\"))")
+request if ${url} ~= /^https?:\/\/npay\.meituan\.com\/conch\/flow\/mypage-wallet-info/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/npay\.meituan\.com\/conch\/walletv\d\/wechat-pop-window/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/web\.meituan\.com\/newUser\/returnMoney\/popWindow/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/web\.meituan\.com\/api\/miniprogram\/my\/(?>novelZone|resources)/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/peppermall\.meituan\.com\/user\/popup\/list/ then reject_dict(200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/web\.meituan\.com\/api\/miniprogram\/tabbar\/all\/query/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/meituanwm.js") with tag="小象超市去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/web\.meituan\.com\/api\/miniprogram\/index\/aggregate/ then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/meituanwm.js") with tag="小象超市去广告补充", requires_body=true
+
+[MitM]
+hostname=peisongapi.meituan.com, www.meituan.com, wmapi.meituan.com, richmanrules.ksedt.com, apimobile.meituan.com, p.meituan.com, rms.meituan.com, cdb.meituan.com, portal-portm.meituan.com, sqt.meituan.com, gouche.ksedt.com, op.ksedt.com, npay.meituan.com, web.meituan.com, peppermall.meituan.com

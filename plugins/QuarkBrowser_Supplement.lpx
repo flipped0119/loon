@@ -1,0 +1,17 @@
+#!name=夸克去广告补充
+#!desc=配合常用的夸克去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/ocean\.shuqireader\.com\/api\/ad\/adserver\/.+ - reject
+^https?:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/ad.+ - reject
+^http:\/\/message\.shuqireader\.com\/message\/.+ - reject
+^http:\/\/.+\.shuqireader\.com\/sapi\/.+ - reject
+^https?:\/\/message\.shuqireader\.com\/message\/.+ reject
+^https?:\/\/.+\.shuqireader\.com\/sapi\/.+ reject
+
+[MitM]
+hostname=ocean.shuqireader.com, *.shuqireader.com, message.shuqireader.com

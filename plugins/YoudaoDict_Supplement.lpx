@@ -1,0 +1,19 @@
+#!name=网易有道词典去广告补充
+#!desc=配合常用的网易有道词典去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https?:\/\/dsp-impr2\.youdao\.com\/adload - reject-200
+^https?:\/\/impservice\.dictapp\.youdao\.com\/imp\/request - reject-img
+^https?:\/\/oral\.youdao\.com\/oral\/adInfo - reject-img
+^https?:\/\/dictvip-business\.youdao\.com\/home\/ad reject-dict
+request if ${url} ~= /^https?:\/\/cdke\.youdao\.com\/course\d\/recommend\/dict\/startup/ then reject_dict(200)
+
+[Script]
+http-response ^https?:\/\/dict\.youdao\.com\/(homepage\/promotion|course\/tab\/home|homepage\/tile) script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/youdao/dict-youdao-ad.js, requires-body=true, timeout=60, tag=网易有道词典去广告补充, enable=true
+
+[MitM]
+hostname=dsp-impr2.youdao.com, impservice.dictapp.youdao.com, oral.youdao.com, dictvip-business.youdao.com, dict.youdao.com, cdke.youdao.com

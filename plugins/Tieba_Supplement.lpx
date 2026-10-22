@@ -1,5 +1,5 @@
 #!name=百度贴吧去广告补充
-#!desc=配合常用的百度贴吧去广告插件使用，只补它们没处理的接口（2 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的百度贴吧去广告插件使用，只补它们没处理的接口（6 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!author=flipped0119
 #!homepage=https://github.com/flipped0119/loon
 #!tag=去广告
@@ -7,9 +7,13 @@
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/ad\/getFeedAd/ then reject(200)
+request if ${url} ~= /^https:\/\/tiebac\.baidu\.com\/c\/u\/chat\/getChatSubscriptionList/ then reject_dict(200)
+response if ${url} ~= /^https:\/\/tiebac\.baidu\.com\/livefeed\/feed/ then response.json.jq("del(.data.banner.items)")
 
 [Script]
-response if ${url} ~= /^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd/ then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js") with tag="百度贴吧补充", requires_body=true
+response if ${url} ~= /^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd/ then script("https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js") with tag="百度贴吧去广告补充", requires_body=true
+http-response ^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/(c\/(s\/sync|f\/(ad\/getSplashAd|frs\/(page|threadlist|generalTabList)|pb\/(pic)?page|excellent\/personalized))$|tiebaads\/commonbatch\?) script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js, requires-body=true, timeout=10, tag=百度贴吧去广告补充
+http-response ^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=百度贴吧去广告补充, argument=[0]
 
 [MitM]
 hostname=tiebac.baidu.com, tieba.baidu.com

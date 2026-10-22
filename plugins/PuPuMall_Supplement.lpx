@@ -1,0 +1,25 @@
+#!name=朴朴超市去广告补充
+#!desc=配合常用的朴朴超市去广告插件使用，只补它们没处理的接口（12 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!author=flipped0119
+#!homepage=https://github.com/flipped0119/loon
+#!tag=去广告
+#!loon_version=3.5.1(998)
+
+[Rewrite]
+^https:\/\/j1\.pupuapi\.com\/client\/notification\/message_center\/unread_number response-body-json-jq .data = []
+^https:\/\/j1\.pupuapi\.com\/client\/member_card\/index\/my reject
+^https:\/\/j1\.pupuapi\.com\/client\/marketing\/advertisement\/search_input_ranking reject-dict
+^https:\/\/j1\.pupuapi\.com\/client\/assets\/discount\/order reject-dict
+^https:\/\/j1\.pupuapi\.com\/client\/marketing\/channel\/global_redeem\/top_tip\/v2 reject-dict
+^https:\/\/j1\.pupuapi\.com\/client\/recommendation\/hub\/interests\/products\/v2 reject-dict
+^https:\/\/j1\.pupuapi\.com\/client\/member_card\/premium\/user_center reject-dict
+
+[Script]
+response if ${url} ~= /^https?:\/\/j1\.pupuapi\.com\/client\/marketing\/banner\/v\d\?position/ then script("https://raw.githubusercontent.com/ddgksf2013/Scripts/master/pupumarket.js") with tag="朴朴超市去广告补充", requires_body=true
+http-response ^https:\/\/j1\.pupuapi\.com\/client\/a朴朴超市, enable=true_resource\/resource_preload\/list_h5_resource script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js, requires-body=true, timeout=60, tag=朴朴超市去广告补充, enable=true
+http-response ^https:\/\/j1\.pupuapi\.com\/client\/search\/hub\/search_box\/products\/v6 script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js, requires-body=true, timeout=60, tag=朴朴超市去广告补充, enable=true
+http-response ^https:\/\/j1\.pupuapi\.com\/client\/order_settlement\/detail script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js, requires-body=true, timeout=60, tag=朴朴超市去广告补充, enable=true
+http-response ^https:\/\/j1\.pupuapi\.com\/client\/order\/orders\/list\/v4 script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/PupuSplashAds.js, requires-body=true, timeout=60, tag=朴朴超市去广告补充, enable=true
+
+[MitM]
+hostname=j1.pupuapi.com
