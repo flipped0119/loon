@@ -1,5 +1,5 @@
 #!name=滴滴去广告补充
-#!desc=配合常用的滴滴去广告插件使用，只补它们没处理的接口（32 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的滴滴去广告插件使用，只补它们没处理的接口（34 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id554499054
 #!author=flipped0119
 #!tag=去广告
@@ -8,17 +8,21 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7d/23/3f/7d233f53-d18c-2a26-928e-51d474f0bd82/AppIcon_default-0-0-1x_U007emarketing-0-6-0-0-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-24 01:31:42
+
+[Rule]
+DOMAIN,gungnir.xiaojukeji.com,REJECT
 
 [Rewrite]
 request if ${url} ~= /https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices)/i then reject(200)
 request if ${url} ~= /^https?:\/\/omgup*\.xiaojukeji\.com\/api/i then reject(200)
 request if ${url} ~= /^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds/i then reject(404)
-request if ${url} ~= /^https?:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name=/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=cms\.htw\.delivery/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.combineHomepageInfo/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.mallRecommend/i then reject_dict(200)
+request if ${url} ~= /^https:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name=/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ut\.xiaojukeji\.com\/ut\/kappa\/api\/owner\/index\/dialog/i then reject(404)
 request if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/confucius\/api\/privacy\/app\/popList/i then reject_dict(200)
-request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=cms\.htw\.delivery/i then reject_dict(200)
-request if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.(?>combineHomepageInfo|mallRecommend)/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getMulti\?/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.udache\.com\/gulfstream\/watson\/v1\/bubble\/getBubble/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/getInsActivityV2/i then reject_dict(200)
@@ -47,4 +51,4 @@ response if ${url} ~= /^https?:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v\d\/
 response if ${url} ~= /^https?:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js") with tag="滴滴去广告补充", requires_body=true
 
 [MitM]
-hostname=res.xiaojukeji.com, omgup*.xiaojukeji.com, ct.xiaojukeji.com, freight.xiaojukeji.com, conf.diditaxi.com.cn, common.diditaxi.com.cn, daijia.kuaidadi.com, as.xiaojukeji.com, ut.xiaojukeji.com, api.udache.com, htwkop.xiaojukeji.com, mapi.xiaojukeji.com, manhattan.webapp.xiaojukeji.com, ddpay.xiaojukeji.com, energy.xiaojukeji.com
+hostname=res.xiaojukeji.com, omgup*.xiaojukeji.com, ct.xiaojukeji.com, htwkop.xiaojukeji.com, as.xiaojukeji.com, freight.xiaojukeji.com, conf.diditaxi.com.cn, common.diditaxi.com.cn, daijia.kuaidadi.com, ut.xiaojukeji.com, api.udache.com, mapi.xiaojukeji.com, manhattan.webapp.xiaojukeji.com, ddpay.xiaojukeji.com, energy.xiaojukeji.com

@@ -8,17 +8,17 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c4/43/e4/c443e452-f7d4-de38-f5c3-2bb85eb6ed74/AppIcon-0-1x_U007ephone-0-1-85-220-0.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-24 01:31:42
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/appVersion\/detectionUpgrade/i then reject(200)
 request if ${url} ~= /^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen/i then reject(200)
 request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list/i then reject(200)
+request if ${url} ~= /^https:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-video\/video\/app\/video\/labelClusterList/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/bms\/queryRecommend/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/mcs-mimp-web\.sf-express\.com\/mcs-mimp\/integralPlanet\/getCxAdvertiseList/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ucmp-static\.sf-express\.com\/proxy\/wxbase\/wxTicket\/wxLiveStreamInfo\?pageNo/i then reject_dict(200)
-request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberManage\/memberEquity\/queryRecommendEquity/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberActLengthy\/fullGiveActivityService\/fullGiveInfo/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/module-config\/query/i then reject_dict(200)

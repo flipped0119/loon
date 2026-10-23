@@ -8,15 +8,15 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3a/69/bc/3a69bc90-ca16-6b83-adef-d0e7fe1dad31/AppIcon-1x_U007emarketing-0-8-0-0-85-220-0.png/120x120bb.png
-#!date=2026-10-22 22:27:02
+#!date=2026-10-24 01:31:42
 
 [Rewrite]
 request if ${url} ~= /^http?:\/\/images\.pinduoduo\.com\/marketing\_api/i then reject(200)
+request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\//i then reject(404)
 request if ${url} ~= /^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\//i then reject(404)
 request if ${url} ~= /^https:\/\/images\.pinduoduo\.com\/mrk\//i then reject(404)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/app_popup/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/flow\/hungary\/window\/global/i then reject_dict(200)
-request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\//i then reject(404)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/barrow\/query/i then reject_dict(200)
 request if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/pdd_live_moore_main_lego/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\//i then reject_dict(200)
@@ -29,4 +29,4 @@ response if ${url} ~= /^https?:\/\/api\.pinduoduo\.com\/api\/alexa\/\w+\/hub/i t
 response if ${url} ~= /^https:\/\/m\.pinduoduo\.net\/comment_result\.html\?/i then script("https://rucu6.pages.dev/Scripts/pinduoduo.js") with tag="拼多多去广告补充", requires_body=true
 
 [MitM]
-hostname=video-dsp.pddpic.com, images.pinduoduo.com, api.pinduoduo.com, m.pinduoduo.net
+hostname=api.pinduoduo.com, video-dsp.pddpic.com, images.pinduoduo.com, m.pinduoduo.net

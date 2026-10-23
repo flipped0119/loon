@@ -1,5 +1,5 @@
 #!name=微博去广告补充
-#!desc=配合常用的微博去广告插件使用，只补它们没处理的接口（20 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
+#!desc=配合常用的微博去广告插件使用，只补它们没处理的接口（27 条）。请排在其他去广告插件之后：Loon 同一请求只执行第一条命中的脚本。
 #!openUrl=https://apps.apple.com/app/id350962117
 #!author=flipped0119
 #!tag=去广告
@@ -8,7 +8,7 @@
 #!loon_version=3.5.1(998)
 #!homepage=https://github.com/flipped0119/loon
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0d/cb/53/0dcb5343-74eb-a65a-bb19-304fe55da537/WeiboAppIcon-0-0-1x_U007epad-0-1-0-85-220.png/120x120bb.png
-#!date=2026-10-22 19:30:26
+#!date=2026-10-24 01:31:42
 
 [Rewrite]
 request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/ad\/weibointl\?/i then reject_dict(200)
@@ -18,9 +18,12 @@ response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=get
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=trends&/i then response.json.jq("if .data.order then .data.order = [\"search_topic\"] end")
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=search_topic&/i then response.json.jq("if .data.search_topic.cards[0].type == \"searchtop\" then del(.data.search_topic.cards[0]) end")
 response if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=user_center&/i then response.json.jq("if .data.cards then .data.cards[].items |= map(select(.type != \"personal_vip\")) | .data.cards |= map(select((.items | length) > 0)) end")
+request if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=treehole&auth=/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/push\/daily/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/2\/logservice\/service\?/i then reject(404)
 request if ${url} ~= /^https?:\/\/tqt\.weibo\.cn\/overall\/redirect\.php\?r=(?>tqt_sdkad|tqtad)/i then reject(404)
 request if ${url} ~= /^https?:\/\/tqt\.weibo\.cn\/.*advert/i then reject(404)
-request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/logservice\/service\?/i then reject(404)
 request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/!\/sug\/list\/finderchange\?/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/guest\/cardlist/i then reject_dict(200)
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/!\/sug\/list\/finderchangemode/i then reject_dict(200)
@@ -31,6 +34,10 @@ request if ${url} ~= /^https:\/\/api\.weibo\.cn\/2\/client\/version/i then rejec
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/(?:api\/config)?(?=[?#]|$)/i then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充"
 request if ${url} ~= /^https:\/\/api\.weibo\.cn\/__qx_weibo_settings__\/api\/(?:save|reset)(?=[?#]|$)/i then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充", requires_body=true
 response if ${url} ~= /^https?:\/\/api\.weibo\.cn(?:\/2\/statuses\/container_timeline_hot|\/2\/guest\/container_timeline_hot|\/2\/statuses\/container_timeline_unread|\/2\/statuses\/container_timeline|\/2\/live\/media_homelist|\/2\/remind\/hometab_dot|\/2\/remind\/unread_count|\/2\/statuses\/container_detail|\/2\/statuses\/container_detail_comment|\/2\/comments\/build_comments|\/2\/search\/finder|\/2\/search\/container_timeline|\/2\/search\/container_discover|\/2\/!\/was\/finder\/searchbarchange|\/2\/cardlist|\/2\/searchall|\/2\/profile\/me|\/2\/video\/flow_stream|\/2\/video\/flow_stream_cache|\/2\/push\/daily|\/2\/push\/active|\/2\/guest\/push_active|\/2\/groups\/allgroups\/v2|\/2\/client\/abserver_list|\/2\/checkin\/show|\/2\/video\/remind_info|\/2\/video\/home_channels)(?=[?#]|$)/i then script("https://ddgksf2013.top/scripts/weibo_json.js") with tag="微博去广告补充", requires_body=true
+response if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/2\/comments\/mix_comments\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/weibo_ads.js") with tag="微博去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/2\/statuses\/(container_detail_comment|container_detail_mix)\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/weibo_ads.js") with tag="微博去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/2\/statuses\/container_detail_forward\?/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/weibo_ads.js") with tag="微博去广告补充", requires_body=true, timeout=60
+response if ${url} ~= /^https?:\/\/m?api\.weibo\.c(n|om)\/2\/(cardlist|searchall|page|messageflow|statuses\/(unread_)?friends(\/|_)timeline|groups\/timeline|statuses\/(container_timeline|container_timeline_hot|unread_hot_timeline|extend|video_mixtimeline)|profile\/(me|container_timeline)|video\/(community_tab|remind_info|tiny_stream_video_list)|checkin\/show|(\!\/)?live\/media_homelist|comments\/build_comments|container\/get_item)/i then script("https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/weibo/weibo_main.js") with tag="微博去广告补充", requires_body=true, timeout=60
 response if ${url} ~= /^https?:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/weibo.js") with tag="微博去广告补充", requires_body=true
 request if ${url} ~= /^https?:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\?/i then script("https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/Plugins/VVebo_Repair.js") with tag="微博去广告补充"
 
